@@ -1,5 +1,5 @@
 // All imagery is temporary Unsplash placeholder art.
-// Swap the URLs here and every page updates — nothing else references Unsplash directly.
+// Swap the URLs here and every page updates. Nothing else references Unsplash directly.
 
 const u = (id, w = 1600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`
@@ -16,7 +16,7 @@ export const images = {
   aboutStory: u('1542744173-8e7e53415bb0', 1400),
   aboutMission: u('1519389950473-47ba0277781c', 1400),
 
-  // Work — field gallery
+  // Work: field gallery
   work: [
     { src: u('1454165804606-c3d57bc86b40', 1200), alt: 'Account planning session around a shared dashboard', caption: 'Account planning, Q3 cycle' },
     { src: u('1531482615713-2afd69097998', 1200), alt: 'Specialist reviewing an outbound sequence on screen', caption: 'Sequence review, mid-market pod' },

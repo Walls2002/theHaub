@@ -6,7 +6,7 @@ import { site } from '../data/site'
 export default function CTABand({
   eyebrow = 'Next step',
   title = 'Tell us what your pipeline is missing.',
-  body = 'A thirty-minute call, no deck. We will tell you whether an embedded team is the right answer — including when it is not.',
+  body = 'A thirty-minute call, no deck. We will tell you whether an embedded team is the right answer, including when it is not.',
   primary = { label: 'Book an intro call', to: '/contact' }
 }) {
   return (

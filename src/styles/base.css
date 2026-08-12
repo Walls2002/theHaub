@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TheHaub — design tokens, reset, typography, primitives
+   TheHaub: design tokens, reset, typography, primitives
    Corporate B2B: paper ground, hairline rules, tight grotesque display, flat colour.
    No gradients anywhere. Depth comes from rules, spacing and scale.
    ========================================================================== */
@@ -13,7 +13,7 @@
   --ink-2: #4c4c54;
   --ink-3: #7a7a84;
 
-  /* Accent — deep pine. Used sparingly: rules, numerals, marks, button hover. */
+  /* Accent: deep pine. Used sparingly for rules, numerals, marks, button hover. */
   --accent: #174a3a;
   --accent-ink: #10362a;
   --accent-wash: #e2e9e4;
@@ -27,7 +27,7 @@
   --line-strong: rgba(23, 23, 27, 0.3);
   --line-invert: rgba(250, 248, 245, 0.18);
 
-  /* Type — one grotesque family, two optical widths.
+  /* Type: one grotesque family, two optical widths.
      Headings use the tighter cut at 600; body uses Inter at 400/450.
      To restyle the whole site, change these four values only. */
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

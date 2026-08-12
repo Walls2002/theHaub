@@ -64,7 +64,7 @@ export default function Home() {
               <img src={images.heroSecondary} alt="Two specialists reviewing a pipeline board" />
             </div>
             <p className="hero__float-note">
-              Weekly review — every miss read out with the wins.
+              Weekly review. Every miss read out with the wins.
             </p>
           </div>
         </Reveal>
@@ -94,8 +94,8 @@ export default function Home() {
             <Reveal delay={120}>
               <p className="body">
                 We are not a staffing agency with a sales deck. We are the team that owns the first
-                thirty days of a buying conversation — research, outreach, qualification and the
-                handover — and reports on it in public.
+                thirty days of a buying conversation: research, outreach, qualification and the
+                handover. Then we report on it in public.
               </p>
               <p className="statement__sig" style={{ marginTop: 28 }}>
                 TheHaub · Embedded revenue teams
@@ -205,8 +205,8 @@ export default function Home() {
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                Logistics, health operations, industrial software and financial infrastructure —
-                long sales cycles, technical buyers, and no patience for spray-and-pray.
+                Logistics, health operations, industrial software and financial infrastructure.
+                Long sales cycles, technical buyers, and no patience for spray-and-pray.
               </p>
             </Reveal>
           </div>

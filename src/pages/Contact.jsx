@@ -34,7 +34,7 @@ function ContactForm() {
     const found = validate(values)
     setErrors(found)
     if (Object.keys(found).length) return
-    // No backend yet — wire this to your form endpoint or CRM.
+    // No backend yet. Wire this to your form endpoint or CRM.
     setSent(true)
   }
 
@@ -46,7 +46,7 @@ function ContactForm() {
         </span>
         <h3 className="display display--sm">Message received.</h3>
         <p className="body">
-          Thanks, {values.name.split(' ')[0]}. A senior lead — not a bot and not a junior — will
+          Thanks, {values.name.split(' ')[0]}. A senior lead, not a bot and not a junior, will
           reply within one business day, usually with two or three questions about your current
           motion.
         </p>
@@ -148,7 +148,7 @@ function ContactForm() {
             Send message <Arrow />
           </button>
           <p className="form__note">
-            We reply within one business day. No sequence, no drip campaign — you get a person.
+            We reply within one business day. No sequence, no drip campaign. You get a person.
           </p>
         </div>
       </div>
@@ -165,7 +165,7 @@ export default function Contact() {
         index="04"
         eyebrow="Contact"
         title="Let’s talk about the number you have to hit."
-        lede="Thirty minutes, no deck. Bring your current pipeline math and we will tell you where an embedded team helps — and where it would only add noise."
+        lede="Thirty minutes, no deck. Bring your current pipeline math and we will tell you where an embedded team helps and where it would only add noise."
       />
 
       <section className="section">
@@ -238,7 +238,7 @@ export default function Contact() {
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                If yours is not here, ask it in the form — we answer pricing questions in the first
+                If yours is not here, ask it in the form. We answer pricing questions in the first
                 reply rather than the third call.
               </p>
             </Reveal>

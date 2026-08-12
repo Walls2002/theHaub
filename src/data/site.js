@@ -1,4 +1,4 @@
-// Brand-level facts. Placeholder contact details — replace before launch.
+// Brand-level facts. Placeholder contact details, replace before launch.
 
 export const site = {
   name: 'TheHaub',

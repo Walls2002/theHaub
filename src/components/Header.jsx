@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <header className={`header ${stuck ? 'is-stuck' : ''}`}>
       <div className="shell header__inner">
-        <Link to="/" className="brand" aria-label={`${site.name} — home`}>
+        <Link to="/" className="brand" aria-label={`${site.name} home`}>
           <span className="brand__mark" />
           <span>{site.name}</span>
           <span className="brand__sub">{site.tagline}</span>

@@ -1,4 +1,4 @@
-# TheHaub — thehaub.com
+# TheHaub (thehaub.com)
 
 Marketing site for TheHaub, built with React 18 + Vite + React Router.
 Structure mirrors the reference site (Home / About / Work / Testimonials / Contact);
@@ -45,17 +45,17 @@ Corporate B2B rather than the usual SaaS template:
   used sparingly (rules, numerals, one hover state). Form errors use a separate
   `--danger` token so the accent never has to mean "something is wrong".
 - **Type:** Inter Tight 600 for headings (tight tracking, tabular numerals),
-  Inter 400/450 for body. One family, two optical cuts — reads corporate rather
+  Inter 400/450 for body. One family, two optical cuts, which reads corporate rather
   than editorial. Controlled by `--display`, `--display-weight`, `--display-track`
   and `--sans` in `base.css`.
 - **Corners:** 2px on buttons, square everywhere else.
 - **Motion:** one subtle fade-up on scroll (`Reveal`), slow image scale on hover,
   sliding link underlines. Everything respects `prefers-reduced-motion`.
 
-All tokens live at the top of `src/styles/base.css` — change the accent there and it
+All tokens live at the top of `src/styles/base.css`. Change the accent there and it
 propagates site-wide.
 
-## Before launch — placeholders to replace
+## Before launch: placeholders to replace
 
 | What | Where |
 | --- | --- |
@@ -63,7 +63,7 @@ propagates site-wide.
 | Email, phone, address, Calendly URL | `src/data/site.js` |
 | Founder name + photo | `src/pages/Contact.jsx`, `images.founder` |
 | Client names, testimonials, metrics | `src/data/content.js` |
-| Contact form submission | `ContactForm.onSubmit` in `src/pages/Contact.jsx` — currently
+| Contact form submission | `ContactForm.onSubmit` in `src/pages/Contact.jsx`, currently
   validates client-side and shows a success state; wire to your form endpoint or CRM |
 | Privacy / Terms links | `src/components/Footer.jsx` |
 

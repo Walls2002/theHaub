@@ -7,7 +7,7 @@ export const hero = {
   headline: 'Pipeline is a system.',
   headlineAccent: 'We build and run yours.',
   body:
-    'TheHaub assembles specialists who sit inside your sales org — not beside it. They use your stack, your qualification bar and your calendar, and they answer to a named lead who reports to you every Friday.',
+    'TheHaub assembles specialists who sit inside your sales org, not beside it. They use your stack, your qualification bar and your calendar, and they answer to a named lead who reports to you every Friday.',
   disciplines: ['Outbound engineering', 'Revenue operations', 'Lifecycle & retention'],
   proof: [
     { value: '1,180', label: 'Qualified meetings held in 2025' },
@@ -107,7 +107,7 @@ export const about = {
     title: 'How it started',
     body: [
       'In 2019 we were two operators moonlighting for a logistics software company that had eleven salespeople and no research function. We spent six weeks doing nothing but reading accounts before anyone dialled. The quarter closed at 340% of target.',
-      'That order of operations — understand, then reach out — became the whole company. We wrote it down, hired against it, and refused the work that asked us to skip it.'
+      'Understand, then reach out. That order of operations became the whole company. We wrote it down, hired against it, and refused the work that asked us to skip it.'
     ]
   },
   now: {
@@ -118,7 +118,7 @@ export const about = {
     ]
   },
   mission:
-    'Our job is to make revenue predictable enough to plan against — so that the people who build the product can stop guessing what next quarter looks like.',
+    'Our job is to make revenue predictable enough to plan against, so that the people who build the product can stop guessing what next quarter looks like.',
   values: [
     { id: '01', title: 'Say the number', body: 'Targets are agreed in writing before work starts, and reported against whether or not they were met.' },
     { id: '02', title: 'Read before you write', body: 'No account is contacted before it is understood. Volume without context is just noise with a logo on it.' },
@@ -146,7 +146,7 @@ export const pillars = [
     id: '02',
     title: 'Research that earns the reply',
     body:
-      'Every account is read before it is contacted — funding, hiring, tooling, org changes, and the trigger that makes this the right week rather than some week.'
+      'Every account is read before it is contacted: funding, hiring, tooling, org changes, and the trigger that makes this the right week rather than some week.'
   },
   {
     id: '03',
@@ -158,7 +158,7 @@ export const pillars = [
     id: '04',
     title: 'Qualification you can audit',
     body:
-      'MEDDICC, BANT or your own framework — applied consistently, recorded on the call, scored, and reviewed with your account executives every Friday.'
+      'MEDDICC, BANT or your own framework, applied consistently, recorded on the call, scored, and reviewed with your account executives every Friday.'
   },
   {
     id: '05',

@@ -51,7 +51,7 @@ export default function Testimonials() {
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                Reference calls available on request — we will connect you with a client in your
+                Reference calls available on request. We will connect you with a client in your
                 segment, including one that ended an engagement.
               </p>
             </Reveal>
