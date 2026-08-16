@@ -10,8 +10,8 @@ export default function About() {
     <>
       <PageHeader
         index="01"
-        eyebrow="About TheHaub"
-        title="Built by operators who got tired of watching good products lose slowly."
+        eyebrow="About DealWorkx"
+        title="Built by operators who got tired of watching good products lose to fuller calendars."
         lede={about.intro}
       />
 
@@ -30,10 +30,9 @@ export default function About() {
                 {about.lead}
               </p>
               <p className="body">
-                A pod is four people: a researcher who reads the market, two specialists who work
-                it, and a senior lead who owns the number. They join your standups, sit in your
-                Slack, and carry your email signature. Most clients stop describing them as an
-                agency somewhere around week five.
+                A campaign team is four people: a researcher who reads the market, a copywriter, a
+                sending specialist who guards deliverability, and a lead who owns the meeting
+                target. You meet all four, and the same four stay on your account.
               </p>
             </Reveal>
           </div>
@@ -80,7 +79,7 @@ export default function About() {
               <Reveal>
                 <span className="eyebrow">{about.now.title}</span>
                 <h2 className="display display--md" style={{ marginTop: 20 }}>
-                  Thirty-eight specialists, organised in pods of four.
+                  Thirty-eight specialists, in campaign teams of four.
                 </h2>
               </Reveal>
               {about.now.body.map((p, i) => (
@@ -150,9 +149,9 @@ export default function About() {
             </Reveal>
             <Reveal delay={120}>
               <p className="body">
-                Predictable does not mean large. It means the number you commit to in January is the
-                number you can still defend in September, because the system that produced it is
-                visible to everyone who depends on it.
+                Predictable does not mean large. It means the meetings you counted on in January are
+                still landing in September, because the research and the sending behind them are
+                visible to everyone who depends on them.
               </p>
             </Reveal>
           </div>
@@ -167,8 +166,8 @@ export default function About() {
 
       <CTABand
         eyebrow="Work with us"
-        title="Want to see whether your motion is worth scaling?"
-        body="Send us your current numbers and we will tell you, honestly, whether more activity is the answer or whether something upstream needs fixing first."
+        title="Want to know how many meetings your market can support?"
+        body="Send us your current numbers and we will tell you, honestly, whether more outreach is the answer or whether something upstream needs fixing first."
       />
     </>
   )

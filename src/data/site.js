@@ -1,14 +1,14 @@
 // Brand-level facts. Placeholder contact details, replace before launch.
 
 export const site = {
-  name: 'TheHaub',
-  domain: 'thehaub.com',
-  tagline: 'Embedded revenue teams',
-  legal: 'TheHaub Partners, Inc.',
+  name: 'DealWorkx',
+  domain: 'dealworkx.com',
+  tagline: 'B2B appointment setting',
+  legal: 'DealWorkx Partners, Inc.',
   founded: 2019,
-  bookingUrl: 'https://calendly.com/thehaub/intro',
+  bookingUrl: 'https://calendly.com/dealworkx/intro',
   contact: {
-    email: 'hello@thehaub.com',
+    email: 'info@dealworkx.com',
     phone: '+1 (628) 555-0142',
     phoneHref: '+16285550142',
     address: ['Level 12, Ayala North Exchange', 'Salcedo Village, Makati City', 'Philippines'],
@@ -25,7 +25,6 @@ export const nav = [
   { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Work', to: '/work' },
-  { label: 'Testimonials', to: '/testimonials' },
   { label: 'Contact', to: '/contact' }
 ]
 

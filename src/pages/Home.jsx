@@ -3,9 +3,8 @@ import Arrow from '../components/Arrow'
 import Reveal from '../components/Reveal'
 import Stats from '../components/Stats'
 import CTABand from '../components/CTABand'
-import Quote from '../components/Quote'
 import images from '../data/images'
-import { clients, hero, reasons, services, statement, stats, testimonials } from '../data/content'
+import { clients, hero, reasons, services, statement, stats } from '../data/content'
 
 export default function Home() {
   return (
@@ -42,13 +41,13 @@ export default function Home() {
           <div className="frame hero__banner">
             <img
               src={images.heroPrimary}
-              alt="A revenue team working through account research across a shared floor"
+              alt="An outbound team working through account research across a shared floor"
               loading="eager"
             />
           </div>
 
           <div className="hero__panel">
-            <span className="eyebrow">Live across client accounts</span>
+            <span className="eyebrow">Across live client campaigns</span>
             <ul className="hero__panel-stats">
               {hero.proof.map((p) => (
                 <li key={p.label}>
@@ -61,10 +60,10 @@ export default function Home() {
 
           <div className="hero__float">
             <div className="frame frame--hover">
-              <img src={images.heroSecondary} alt="Two specialists reviewing a pipeline board" />
+              <img src={images.heroSecondary} alt="Two researchers reviewing an account list" />
             </div>
             <p className="hero__float-note">
-              Weekly review. Every miss read out with the wins.
+              Every account read before a single email is sent.
             </p>
           </div>
         </Reveal>
@@ -93,12 +92,12 @@ export default function Home() {
             </Reveal>
             <Reveal delay={120}>
               <p className="body">
-                We are not a staffing agency with a sales deck. We are the team that owns the first
-                thirty days of a buying conversation: research, outreach, qualification and the
-                handover. Then we report on it in public.
+                We are not a list vendor and we do not sell leads. We own everything between your
+                ideal customer and a confirmed meeting: the research, the sending domains, the copy,
+                the follow-up and the no-shows. Your reps just take the call.
               </p>
               <p className="statement__sig" style={{ marginTop: 28 }}>
-                TheHaub · Embedded revenue teams
+                DealWorkx · B2B appointment setting
               </p>
             </Reveal>
           </div>
@@ -112,13 +111,13 @@ export default function Home() {
             <Reveal>
               <span className="eyebrow">What we do</span>
               <h2 className="display display--lg head__title">
-                Four practices. One team on your account.
+                Four jobs, one team, one booked meeting.
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                Most clients start with one practice and add the next once the reporting proves out.
-                Nothing is bundled that you did not ask for.
+                Most clients take all four, because a booked meeting needs every one of them. You
+                can start with research alone if you already have the sending set up.
               </p>
             </Reveal>
           </div>
@@ -146,9 +145,9 @@ export default function Home() {
           <div className="reasons__grid">
             <div className="reasons__media">
               <Reveal>
-                <span className="eyebrow">Why build with us</span>
+                <span className="eyebrow">Why outsource it</span>
                 <h2 className="display display--md" style={{ marginTop: 20 }}>
-                  An extension of your team, held to the same bar.
+                  Faster than hiring, and cheaper than getting it wrong.
                 </h2>
                 <div className="frame frame--hover ratio-4x5" style={{ marginTop: 32 }}>
                   <img src={images.approach} alt="A team lead running a weekly pipeline review" />
@@ -159,8 +158,9 @@ export default function Home() {
             <div>
               <Reveal>
                 <p className="lede" style={{ marginBottom: 34 }}>
-                  Outsourcing usually fails for structural reasons, not effort. Every one of these is
-                  a fix for something we watched break.
+                  The case for handing this over is not that your team could not do it. It is that
+                  doing it properly is a full-time job with its own tooling and its own failure
+                  modes.
                 </p>
               </Reveal>
               <ul className="reasons__list">
@@ -173,7 +173,7 @@ export default function Home() {
               </ul>
               <Reveal delay={120}>
                 <Link className="tlink" to="/work" style={{ marginTop: 30 }}>
-                  How an engagement runs <Arrow size={12} />
+                  How a meeting gets booked <Arrow size={12} />
                 </Link>
               </Reveal>
             </div>
@@ -200,7 +200,7 @@ export default function Home() {
             <Reveal>
               <span className="eyebrow">Selected clients</span>
               <h2 className="display display--lg head__title">
-                Teams we build pipeline with.
+                Teams we book meetings for.
               </h2>
             </Reveal>
             <Reveal delay={100}>
@@ -217,28 +217,6 @@ export default function Home() {
               </Reveal>
             ))}
           </ul>
-        </div>
-      </section>
-
-      {/* ------------------------------ Testimonials ------------------------------ */}
-      <section className="section section--muted">
-        <div className="shell">
-          <div className="head head--split">
-            <Reveal>
-              <span className="eyebrow">In their words</span>
-              <h2 className="display display--lg head__title">What the work feels like.</h2>
-            </Reveal>
-            <Reveal delay={100}>
-              <Link className="tlink" to="/testimonials">
-                Read every testimonial <Arrow size={12} />
-              </Link>
-            </Reveal>
-          </div>
-          <div className="quotes">
-            {testimonials.slice(0, 3).map((t, i) => (
-              <Quote key={t.name} item={t} delay={i * 70} />
-            ))}
-          </div>
         </div>
       </section>
 

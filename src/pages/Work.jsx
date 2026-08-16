@@ -12,8 +12,8 @@ export default function Work() {
       <PageHeader
         index="02"
         eyebrow="The work"
-        title="How we deliver value."
-        lede="Every engagement runs on the same five-part method. The inputs change by market; the order never does."
+        title="How a meeting gets booked."
+        lede="Every engagement runs through the same four stages. The inputs change by market; the order never does."
       />
 
       {/* --------------------------------- Pillars -------------------------------- */}
@@ -38,13 +38,13 @@ export default function Work() {
             <Reveal>
               <span className="eyebrow">From the floor</span>
               <h2 className="display display--lg head__title">
-                What the method looks like on an ordinary Tuesday.
+                What the work looks like on an ordinary Tuesday.
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                No stock heroics. Research blocks, calibration calls, call scoring, and the Friday
-                review where the misses get read out loud.
+                No stock heroics. Research blocks, copy reviews, placement checks, and the Friday
+                report where the campaigns that failed get read out with the ones that worked.
               </p>
             </Reveal>
           </div>
@@ -106,12 +106,12 @@ export default function Work() {
           <div className="head head--split">
             <Reveal>
               <span className="eyebrow">Capabilities</span>
-              <h2 className="display display--lg head__title">Everything a pod can cover.</h2>
+              <h2 className="display display--lg head__title">Everything a campaign covers.</h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                Start with one area or take the full motion. Scope is agreed in writing before a
-                single account is touched.
+                Take the full motion or start with research alone. Scope is agreed in writing before
+                a single account is touched.
               </p>
               <Link className="tlink" to="/contact" style={{ marginTop: 22 }}>
                 Scope an engagement <Arrow size={12} />
@@ -132,8 +132,8 @@ export default function Work() {
 
       <CTABand
         eyebrow="Start here"
-        title="Bring us the motion that stalled."
-        body="We will read your last two quarters, tell you where the drop-off is, and only then talk about a team."
+        title="Bring us the campaign that stalled."
+        body="We will read your last two quarters of outreach, tell you where the drop-off is, and only then talk about running it."
       />
     </>
   )

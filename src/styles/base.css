@@ -1,5 +1,5 @@
 /* ==========================================================================
-   TheHaub: design tokens, reset, typography, primitives
+   DealWorkx: design tokens, reset, typography, primitives
    Corporate B2B: paper ground, hairline rules, tight grotesque display, flat colour.
    No gradients anywhere. Depth comes from rules, spacing and scale.
    ========================================================================== */
@@ -276,6 +276,17 @@ select {
   --btn-fg: var(--paper);
 }
 
+.btn:disabled {
+  cursor: progress;
+  opacity: 0.5;
+}
+
+.btn:disabled:hover {
+  --btn-bg: var(--ink);
+  --btn-line: var(--ink);
+  --btn-fg: var(--paper);
+}
+
 .btn__arrow {
   transition: transform 0.28s var(--ease);
 }
@@ -428,6 +439,19 @@ select {
   .tlink::after {
     transition: none;
   }
+}
+
+/* Available to screen readers, invisible on screen. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ------------------------------ Skip to main ------------------------------ */

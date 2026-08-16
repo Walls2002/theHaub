@@ -5,8 +5,8 @@ import { site } from '../data/site'
 
 export default function CTABand({
   eyebrow = 'Next step',
-  title = 'Tell us what your pipeline is missing.',
-  body = 'A thirty-minute call, no deck. We will tell you whether an embedded team is the right answer, including when it is not.',
+  title = 'Tell us who you need to be in front of.',
+  body = 'A thirty-minute call, no deck. We will tell you how many meetings your market can realistically support, including when the answer is not many.',
   primary = { label: 'Book an intro call', to: '/contact' }
 }) {
   return (

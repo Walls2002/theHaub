@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 import { nav, site } from '../data/site'
 
 const services = [
-  'Outbound engineering',
-  'Revenue operations',
-  'Inbound response',
-  'Lifecycle & retention'
+  'Appointment setting',
+  'Lead research',
+  'Outreach infrastructure',
+  'CRM and handover'
 ]
 
 export default function Footer() {
@@ -19,8 +19,8 @@ export default function Footer() {
               <span>{site.name}</span>
             </Link>
             <p className="body" style={{ marginTop: 18, maxWidth: '34ch' }}>
-              Embedded outbound, operations and lifecycle teams for B2B companies that would rather
-              own their pipeline than rent it.
+              Researched outbound and booked meetings for B2B companies that would rather spend
+              their selling time selling.
             </p>
           </div>
 

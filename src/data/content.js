@@ -3,85 +3,80 @@ import images from './images'
 /* ---------------------------------- Home ---------------------------------- */
 
 export const hero = {
-  eyebrow: 'Embedded revenue teams',
-  headline: 'Pipeline is a system.',
-  headlineAccent: 'We build and run yours.',
+  eyebrow: 'B2B appointment setting',
+  headline: 'You close the deals.',
+  headlineAccent: 'We fill the calendar.',
   body:
-    'TheHaub assembles specialists who sit inside your sales org, not beside it. They use your stack, your qualification bar and your calendar, and they answer to a named lead who reports to you every Friday.',
-  disciplines: ['Outbound engineering', 'Revenue operations', 'Lifecycle & retention'],
+    'DealWorkx researches your market, runs the outreach across email, LinkedIn and phone, and books qualified meetings straight onto your reps’ calendars. First meetings inside thirty days.',
+  disciplines: ['Appointment setting', 'Lead research', 'Outbound campaigns'],
   proof: [
-    { value: '1,180', label: 'Qualified meetings held in 2025' },
-    { value: '94%', label: 'Client retention past year one' },
-    { value: '21 days', label: 'Median ramp to live volume' }
+    { value: '$310M', label: 'Client pipeline generated since 2019' },
+    { value: '9,400', label: 'Qualified meetings booked' },
+    { value: '30 days', label: 'To your first booked meeting' }
   ]
 }
 
 export const statement =
-  'Most teams do not have a lead problem. They have an execution problem that nobody owns. We take ownership, in writing, with numbers attached.'
+  'Building an in-house SDR desk costs six months and most of a quarter of a million dollars before the first meeting lands. We start booking in thirty days.'
 
 export const services = [
   {
     id: '01',
-    title: 'Outbound engineering',
+    title: 'Appointment setting',
     body:
-      'Account research, list architecture, message testing and the specialists who work the sequences every day. Built per segment, rewritten every six weeks against reply data.',
-    points: ['ICP and account mapping', 'Multi-channel cadences', 'Copy testing at volume']
+      'Research, outreach and follow-up handled end to end. You get a confirmed meeting with a decision maker who knows why the call is happening.',
+    points: ['Verified decision makers', 'Confirmed and reminded', 'Briefed before the call']
   },
   {
     id: '02',
-    title: 'Revenue operations',
+    title: 'Lead research',
     body:
-      'The unglamorous half of pipeline: clean records, sane routing, honest attribution and a dashboard your board can read without a translator.',
-    points: ['CRM hygiene and routing', 'Attribution and forecasting', 'Reporting your board reads']
+      'Your ideal customer defined narrowly, then built into a list of real people with verified contact details and a reason to hear from you this month.',
+    points: ['ICP and account mapping', 'Verified contact data', 'Intent and hiring triggers']
   },
   {
     id: '03',
-    title: 'Inbound response',
+    title: 'Outreach infrastructure',
     body:
-      'Speed-to-lead under five minutes during your business hours. Every inbound is qualified against your criteria and booked directly onto the right calendar.',
-    points: ['Sub-5-minute response', 'Qualification against your bar', 'Direct calendar booking']
+      'Separate sending domains, warmed properly and monitored every week. Campaign volume never touches the domain your invoices go out on.',
+    points: ['Dedicated sending domains', 'Inbox placement monitoring', 'Copy tested per segment']
   },
   {
     id: '04',
-    title: 'Lifecycle & retention',
+    title: 'CRM and handover',
     body:
-      'Onboarding sequences, expansion plays and churn signals worked by people who know your product well enough to answer the second question.',
-    points: ['Onboarding and activation', 'Expansion and renewal plays', 'Churn-signal monitoring']
+      'Every booked meeting lands in your CRM with the research attached, routed to the right rep, and tracked through to closed won or closed lost.',
+    points: ['CRM setup and routing', 'Handover briefs', 'Pipeline reporting']
   }
 ]
 
 export const reasons = [
   {
-    title: 'Hired for you, not drawn from a pool',
+    title: 'A quarter of the cost of hiring',
     body:
-      'Every specialist is recruited against your role brief and stays on your account. No rotating bench, no shared headcount across four clients.'
+      'One in-house rep means salary, tooling, management and a six-month ramp you pay for whether or not it works. A DealWorkx team costs less and starts sooner.'
   },
   {
-    title: 'They live in your stack',
+    title: 'Live in two weeks, booking in four',
     body:
-      'Your CRM, your sequencer, your Slack, your meeting notes. Nothing is exported to a vendor system you cannot audit.'
+      'Research and infrastructure run in parallel during weeks one and two. Campaigns open in week three, and the first meetings land inside thirty days.'
   },
   {
-    title: 'One senior lead per account',
+    title: 'Your domain reputation stays clean',
     body:
-      'A named team lead owns targets, quality and escalation. You get one person to call, not a support queue.'
+      'All campaign volume runs on separate warmed domains we own and monitor. If a domain degrades we retire it, and your primary sending reputation is untouched.'
   },
   {
-    title: 'Ramped in twenty-one days',
+    title: 'You only do the closing',
     body:
-      'Week one is discovery and enablement, week two is calibration, week three is live volume with a quality gate before scale.'
-  },
-  {
-    title: 'Reported without varnish',
-    body:
-      'Meetings held, pipeline created, and the plays that failed. We publish the misses in the same document as the wins.'
+      'List building, copy, sending, follow-up, no-shows and rescheduling are ours. Your reps open their calendar and take the call.'
   }
 ]
 
 export const stats = [
-  { value: '21', unit: 'days', label: 'Median ramp to live volume' },
-  { value: '4.2', unit: '×', label: 'Average pipeline coverage built' },
-  { value: '38', unit: '', label: 'Embedded specialists placed' },
+  { value: '30', unit: 'days', label: 'To first booked meeting' },
+  { value: '9,400', unit: '', label: 'Meetings booked since 2019' },
+  { value: '71', unit: '%', label: 'Average meeting show rate' },
   { value: '11', unit: '', label: 'Markets covered end to end' }
 ]
 
@@ -100,35 +95,35 @@ export const clients = [
 
 export const about = {
   intro:
-    'We started TheHaub on a simple observation: the companies with the best products rarely lose on product. They lose because nobody owns the first thirty days of a buying conversation.',
+    'We started DealWorkx because good products kept losing to worse ones with fuller calendars. Pipeline is rarely a talent problem. It is a research and consistency problem, and that can be handed to someone else.',
   lead:
-    'TheHaub is a team of researchers, operators and sales specialists who take that ownership. We map the accounts worth your time, build the motion that reaches them, and staff it with people who stay long enough to get good at your market.',
+    'DealWorkx is a team of researchers, copywriters and sales development reps who book meetings for B2B companies. You bring the product and the closers. We bring the calendar.',
   beginning: {
     title: 'How it started',
     body: [
-      'In 2019 we were two operators moonlighting for a logistics software company that had eleven salespeople and no research function. We spent six weeks doing nothing but reading accounts before anyone dialled. The quarter closed at 340% of target.',
-      'Understand, then reach out. That order of operations became the whole company. We wrote it down, hired against it, and refused the work that asked us to skip it.'
+      'In 2019 we ran outbound for a logistics software company with eleven salespeople and no research function. We spent six weeks reading accounts before anyone sent a first email. That quarter closed at 340% of target.',
+      'Research first, outreach second. That order became the company.'
     ]
   },
   now: {
     title: 'Where we are now',
     body: [
-      'Thirty-eight specialists across research, outbound, operations and lifecycle, organised into pods of four with a senior lead on every account. Clients range from Series A teams making their first sales hire to enterprises rebuilding a stalled outbound function.',
-      'We still refuse the work that asks us to skip the reading. It costs us deals. It is also the only reason the numbers hold up in month nine.'
+      'Thirty-eight specialists across research, copy, sending and booking, working accounts in eleven markets for clients from Series A through enterprise.',
+      'We still refuse campaigns that ask us to skip the research. It costs us deals, and it is the reason month nine looks like month three.'
     ]
   },
   mission:
-    'Our job is to make revenue predictable enough to plan against, so that the people who build the product can stop guessing what next quarter looks like.',
+    'Our job is to make the calendar predictable, so the people who build the product can stop guessing what next quarter looks like.',
   values: [
-    { id: '01', title: 'Say the number', body: 'Targets are agreed in writing before work starts, and reported against whether or not they were met.' },
-    { id: '02', title: 'Read before you write', body: 'No account is contacted before it is understood. Volume without context is just noise with a logo on it.' },
-    { id: '03', title: 'Stay long enough to be useful', body: 'We staff for tenure, not utilisation. A specialist in month nine is worth four in month one.' },
-    { id: '04', title: 'Publish the misses', body: 'The plays that failed go in the same report as the ones that worked, with the reason attached.' }
+    { id: '01', title: 'Say the number', body: 'Meeting targets are agreed in writing before work starts, and reported against either way.' },
+    { id: '02', title: 'Read before you write', body: 'No account is contacted before it is understood. Volume without context is just noise.' },
+    { id: '03', title: 'Protect the inbox', body: 'Deliverability is a standing job, not a setup task. We monitor placement every week.' },
+    { id: '04', title: 'Publish the misses', body: 'Campaigns that failed go in the same report as the ones that worked, with the reason attached.' }
   ],
   timeline: [
     { year: '2019', text: 'Founded with two operators and one logistics client.' },
-    { year: '2021', text: 'First revenue operations pod; reporting standard published.' },
-    { year: '2023', text: 'Lifecycle and retention practice opened after client demand.' },
+    { year: '2021', text: 'Dedicated deliverability practice opened after our first burned domain.' },
+    { year: '2023', text: 'Five thousandth meeting booked.' },
     { year: '2026', text: 'Thirty-eight specialists across eleven markets.' }
   ]
 }
@@ -138,166 +133,91 @@ export const about = {
 export const pillars = [
   {
     id: '01',
-    title: 'Definition before deployment',
+    title: 'Define and research',
     body:
-      'Nothing is sent until the account map, the qualification bar and the target math are agreed in writing. If we cannot describe who should buy and why now, we have no business contacting them.'
+      'We narrow your ideal customer until it is a list of named people, then read each account for the trigger that makes this the right month rather than some month.'
   },
   {
     id: '02',
-    title: 'Research that earns the reply',
+    title: 'Build the infrastructure',
     body:
-      'Every account is read before it is contacted: funding, hiring, tooling, org changes, and the trigger that makes this the right week rather than some week.'
+      'Sending domains registered, warmed and authenticated. Sequences built per segment. Nothing sends until placement testing clears.'
   },
   {
     id: '03',
-    title: 'Cadence built per segment',
+    title: 'Run the outreach',
     body:
-      'Email, phone, LinkedIn and direct outreach sequenced differently for enterprise, mid-market and product-led motions. One cadence for all three is a rounding error pretending to be a strategy.'
+      'Email, LinkedIn and phone, sequenced by segment and rewritten every six weeks against reply data. Two variants always running against each other.'
   },
   {
     id: '04',
-    title: 'Qualification you can audit',
+    title: 'Book and hand over',
     body:
-      'MEDDICC, BANT or your own framework, applied consistently, recorded on the call, scored, and reviewed with your account executives every Friday.'
-  },
-  {
-    id: '05',
-    title: 'Reporting without varnish',
-    body:
-      'One dashboard, refreshed nightly: meetings set, meetings held, pipeline created, and a written note on what we stopped doing and why.'
+      'Interested replies are qualified against your criteria, booked, confirmed, reminded, and handed to your rep with the research attached.'
   }
 ]
 
 export const engagements = [
   {
     tag: 'Logistics software',
-    title: 'Rebuilt outbound after a stalled quarter',
+    title: 'A full CRM and an empty calendar',
     body:
-      'A 40-person team with a full CRM and an empty calendar. We rewrote the account map, cut the target list by 62%, and rebuilt the cadence around shipment-volume triggers.',
+      'Forty salespeople, no research function. We cut the target list by 62% and rebuilt outreach around shipment-volume triggers.',
     metrics: [
-      { value: '3.1×', label: 'Meetings held per month' },
+      { value: '31', label: 'Meetings booked per month' },
       { value: '62%', label: 'Smaller target list' },
-      { value: '19 days', label: 'To first held meeting' }
+      { value: '19 days', label: 'To first booked meeting' }
     ]
   },
   {
     tag: 'Clinical operations',
-    title: 'Inbound response inside five minutes',
+    title: 'Rebuilt after a burned domain',
     body:
-      'Demo requests were sitting for eleven hours. We staffed a two-person response pod across two time zones with qualification scripted against their compliance criteria.',
+      'Their primary domain had been used for cold volume and was landing in spam. We moved sending to fresh warmed domains and repaired placement.',
     metrics: [
-      { value: '4m 10s', label: 'Median response time' },
-      { value: '+48%', label: 'Demo-to-opportunity rate' },
-      { value: '0', label: 'Unworked inbounds' }
+      { value: '96%', label: 'Inbox placement restored' },
+      { value: '+48%', label: 'Reply-to-meeting rate' },
+      { value: '0', label: 'Emails from their main domain' }
     ]
   },
   {
     tag: 'Industrial automation',
-    title: 'Operations rebuilt before headcount added',
+    title: 'Meetings that actually happened',
     body:
-      'They wanted four more reps. They needed routing, deduplication and a forecast that matched reality. We fixed the system first, then added two specialists.',
+      'They were being sold appointments that never showed. We rewrote qualification, added confirmation calls, and reported on held meetings only.',
     metrics: [
-      { value: '11k', label: 'Duplicate records merged' },
-      { value: '±6%', label: 'Forecast accuracy' },
-      { value: '2', label: 'Hires instead of four' }
+      { value: '79%', label: 'Show rate, up from 41%' },
+      { value: '2.4×', label: 'Pipeline per meeting' },
+      { value: '11k', label: 'Duplicate records merged' }
     ]
   }
 ]
 
 export const capabilities = [
-  { area: 'Research', detail: 'Account mapping, ICP definition, intent and trigger monitoring, list architecture' },
-  { area: 'Outbound', detail: 'Email, phone, LinkedIn, direct mail, sequence design and copy testing' },
-  { area: 'Operations', detail: 'CRM administration, routing, deduplication, attribution, forecasting' },
-  { area: 'Qualification', detail: 'MEDDICC, BANT, CHAMP or bespoke frameworks, call scoring and review' },
-  { area: 'Lifecycle', detail: 'Onboarding, activation, expansion plays, renewal and churn-signal work' },
-  { area: 'Reporting', detail: 'Nightly dashboards, weekly written reviews, quarterly business reviews' }
-]
-
-/* ------------------------------- Testimonials ------------------------------ */
-
-export const featuredTestimonial = {
-  quote:
-    'We had run three outsourced pilots before this one and every single one ended with a spreadsheet of meetings nobody could verify. TheHaub handed us recordings, scores and a written note on what they had stopped doing. Month nine looks like month three, only bigger.',
-  name: 'Adaeze Okafor',
-  role: 'VP Revenue',
-  company: 'Northbeam Logistics',
-  avatar: images.avatars.a
-}
-
-export const testimonials = [
-  {
-    quote:
-      'The first three weeks were almost entirely research and I hated it. Then the meetings started landing with people who already understood why we were calling.',
-    name: 'Tomas Reinholt',
-    role: 'Chief Commercial Officer',
-    company: 'Halden Robotics',
-    avatar: images.avatars.b
-  },
-  {
-    quote:
-      'Our inbound used to sit overnight. It now gets answered before the prospect closes the tab, and the qualification actually matches what our AEs want.',
-    name: 'Priya Raghavan',
-    role: 'Head of Growth',
-    company: 'Corvara Health',
-    avatar: images.avatars.c
-  },
-  {
-    quote:
-      'They told us not to hire the four reps we had budgeted. That advice cost them revenue and bought them a three-year relationship.',
-    name: 'Daniel Osei',
-    role: 'Founder',
-    company: 'Solvent Labs',
-    avatar: images.avatars.d
-  },
-  {
-    quote:
-      'The Friday review is the only recurring meeting on my calendar I have never cancelled. Wins, misses, and what changes on Monday.',
-    name: 'Ingrid Halvorsen',
-    role: 'VP Sales',
-    company: 'Ledgerline',
-    avatar: images.avatars.e
-  },
-  {
-    quote:
-      'Their operations lead found eleven thousand duplicate records we had been forecasting against. That single fix changed how the board read our numbers.',
-    name: 'Marcus Bell',
-    role: 'Director of RevOps',
-    company: 'Meridian Freight',
-    avatar: images.avatars.f
-  },
-  {
-    quote:
-      'Two specialists have been on our account for two years. They know our product better than half our new hires, and prospects can tell.',
-    name: 'Sofia Marchetti',
-    role: 'Chief of Staff',
-    company: 'Kestrel Analytics',
-    avatar: images.avatars.g
-  }
-]
-
-export const outcomeStats = [
-  { value: '94%', label: 'Client retention past year one' },
-  { value: '2.7 yrs', label: 'Average specialist tenure on account' },
-  { value: '1,180', label: 'Qualified meetings held in 2025' }
+  { area: 'Research', detail: 'ICP definition, account mapping, verified contact data, intent and trigger monitoring' },
+  { area: 'Copy', detail: 'Sequence design, per-segment messaging, A/B testing against reply data' },
+  { area: 'Sending', detail: 'Domain setup and warm-up, authentication, inbox placement monitoring' },
+  { area: 'Booking', detail: 'Qualification against your criteria, confirmation, reminders, rescheduling' },
+  { area: 'Reporting', detail: 'Meetings booked and held, pipeline created, weekly written reviews' }
 ]
 
 /* --------------------------------- Contact --------------------------------- */
 
 export const faqs = [
   {
-    q: 'What does an engagement cost?',
-    a: 'Engagements start at a fixed monthly fee per embedded specialist, with a performance component tied to held meetings once the ramp period closes. There is no long-term lock; ninety days is the shortest arrangement that produces a fair read.'
+    q: 'What does it cost?',
+    a: 'A flat monthly fee covering the whole team, with a performance component tied to held meetings once the ramp period closes. It lands well under the loaded cost of one in-house rep. Ninety days is the shortest engagement that produces a fair read.'
   },
   {
-    q: 'How quickly can a team start?',
-    a: 'Recruitment against your role brief takes two to three weeks. From day one of the engagement, discovery and enablement run for a week, calibration for a week, and live volume opens in week three.'
+    q: 'How quickly do meetings start?',
+    a: 'Research and domain warm-up run through weeks one and two, campaigns open in week three, and the first meetings are usually booked inside thirty days.'
   },
   {
     q: 'Do we keep the data and the accounts?',
-    a: 'Always. Everything is built inside your CRM and sequencing tools. If the engagement ends, the account map, the sequences and the records stay with you.'
+    a: 'Always. The account map, the sequences and every record stay with you if the engagement ends. Nothing is locked in a vendor system you cannot export.'
   },
   {
     q: 'Which markets do you cover?',
-    a: 'North America, the UK and Ireland, the Nordics, ANZ and Southeast Asia, staffed to your prospects business hours rather than ours.'
+    a: 'North America, the UK and Ireland, the Nordics, ANZ and Southeast Asia, staffed to your prospects’ business hours rather than ours.'
   }
 ]

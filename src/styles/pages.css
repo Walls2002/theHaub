@@ -649,121 +649,6 @@
   color: var(--ink-2);
 }
 
-/* ------------------------------ Testimonials ------------------------------ */
-
-.feature-quote {
-  display: grid;
-  gap: 36px;
-}
-
-@media (min-width: 900px) {
-  .feature-quote {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr);
-    gap: 64px;
-    align-items: end;
-  }
-}
-
-.feature-quote__text {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: clamp(1.35rem, 2.5vw, 2rem);
-  line-height: 1.3;
-  letter-spacing: -0.021em;
-  text-wrap: pretty;
-}
-
-.feature-quote__mark {
-  display: block;
-  width: 30px;
-  height: 3px;
-  background: var(--accent);
-  margin-bottom: 26px;
-}
-
-.attrib {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.attrib__avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex: none;
-  background: var(--paper-3);
-}
-
-.attrib__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.attrib__name {
-  font-size: 0.92rem;
-  font-weight: 500;
-}
-
-.attrib__role {
-  font-size: 0.82rem;
-  color: var(--ink-3);
-}
-
-.quotes {
-  display: grid;
-  gap: 0;
-  border-top: var(--rule) solid var(--line);
-  border-left: var(--rule) solid var(--line);
-}
-
-@media (min-width: 760px) {
-  .quotes {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1080px) {
-  .quotes {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.quote {
-  padding: 34px 28px 30px;
-  border-right: var(--rule) solid var(--line);
-  border-bottom: var(--rule) solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  transition: background 0.32s var(--ease);
-}
-
-.quote:hover {
-  background: var(--paper-2);
-}
-
-.section--muted .quote:hover {
-  background: var(--paper);
-}
-
-.quote__text {
-  font-size: 1rem;
-  line-height: 1.58;
-  color: var(--ink);
-  flex: 1;
-}
-
-.quote__company {
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
-}
-
 /* --------------------------------- Contact -------------------------------- */
 
 .contact__grid {
@@ -917,9 +802,38 @@
   border-bottom-color: var(--danger);
 }
 
+.field.has-error input:focus,
+.field.has-error textarea:focus {
+  border-bottom-color: var(--danger);
+}
+
 .field__error {
   font-size: 0.78rem;
   color: var(--danger);
+}
+
+/* Honeypot: off-screen rather than display:none, which some bots skip. */
+.form__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form__alert {
+  border-left: 3px solid var(--danger);
+  padding: 4px 0 4px 16px;
+  margin-bottom: 26px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.form__alert a {
+  color: var(--danger);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .form__foot {
@@ -943,6 +857,16 @@
   display: grid;
   gap: 14px;
   justify-items: start;
+}
+
+/* Focused programmatically after a send; no ring for that, one for real keyboard focus. */
+.form__sent:focus {
+  outline: none;
+}
+
+.form__sent:focus-visible {
+  outline: var(--rule) solid var(--accent);
+  outline-offset: 4px;
 }
 
 .form__sent-mark {

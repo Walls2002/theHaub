@@ -1,7 +1,7 @@
-# TheHaub (thehaub.com)
+# DealWorkx (dealworkx.com)
 
-Marketing site for TheHaub, built with React 18 + Vite + React Router.
-Structure mirrors the reference site (Home / About / Work / Testimonials / Contact);
+Marketing site for DealWorkx, built with React 18 + Vite + React Router.
+Structure mirrors the reference site (Home / About / Work / Contact);
 brand, copy, design language and imagery are entirely original.
 
 ## Run
@@ -23,8 +23,8 @@ src/
     site.js             brand, nav, contact details
     content.js          all page copy in one place
     images.js           every image URL (Unsplash placeholders)
-  components/           Header, Footer, PageHeader, CTABand, Stats, Quote, Reveal, Arrow
-  pages/                Home, About, Work, Testimonials, Contact, NotFound
+  components/           Header, Footer, PageHeader, CTABand, Stats, Reveal, Arrow
+  pages/                Home, About, Work, Contact, NotFound
   styles/
     base.css            tokens, reset, typography, buttons, primitives
     components.css      header, footer, page header, CTA band, stat + logo rails
@@ -62,9 +62,10 @@ propagates site-wide.
 | Images (Unsplash temporary art) | `src/data/images.js` |
 | Email, phone, address, Calendly URL | `src/data/site.js` |
 | Founder name + photo | `src/pages/Contact.jsx`, `images.founder` |
-| Client names, testimonials, metrics | `src/data/content.js` |
-| Contact form submission | `ContactForm.onSubmit` in `src/pages/Contact.jsx`, currently
-  validates client-side and shows a success state; wire to your form endpoint or CRM |
+| Client names, case-study metrics | `src/data/content.js` |
+| Contact form submission | `submitMessage` in `src/pages/Contact.jsx` — a no-op stub.
+  Point it at your form endpoint or CRM; anything it throws surfaces as the form's
+  failure state, with the mailto address as the fallback |
 | Privacy / Terms links | `src/components/Footer.jsx` |
 
 ## Deploy
