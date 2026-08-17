@@ -61,14 +61,100 @@ propagates site-wide.
 | --- | --- |
 | Images (Unsplash temporary art) | `src/data/images.js` |
 | Email, phone, address, Calendly URL | `src/data/site.js` |
-| Founder name + photo | `src/pages/Contact.jsx`, `images.founder` |
 | Client names, case-study metrics | `src/data/content.js` |
-| Contact form submission | `submitMessage` in `src/pages/Contact.jsx` — a no-op stub.
-  Point it at your form endpoint or CRM; anything it throws surfaces as the form's
-  failure state, with the mailto address as the fallback |
 | Privacy / Terms links | `src/components/Footer.jsx` |
+| Brevo sender address for the contact form | `MAIL_FROM` in `public/api/config.php` (see below) |
 
-## Deploy
+## Deploy (Hostinger)
 
-Static build. On Netlify/Vercel/S3, add an SPA rewrite so client-side routes resolve:
-all paths → `/index.html`.
+```bash
+npm run build
+```
+
+Upload **the contents of `dist/`** — not the folder itself — into `public_html`.
+`dist/` contains `.htaccess` and `api/`, both required.
+
+Easiest reliable method: zip everything inside `dist/`, upload the zip via
+hPanel → Files → File Manager, then right-click → Extract. Zipping matters
+because File Manager and some FTP clients silently skip dotfiles, and
+**`.htaccess`** is not optional — React Router owns `/about`, `/work` and
+`/contact`, so without its rewrite those URLs return a Hostinger 404 on direct
+load or refresh.
+
+Hostinger must be running PHP 8.0+ (hPanel → Advanced → PHP Configuration).
+
+### Contact form → info@dealworkx.com
+
+`submitMessage` in `src/pages/Contact.jsx` posts JSON to `/api/contact.php`,
+which re-validates the submission server-side and relays it through Brevo's SMTP
+relay to `info@dealworkx.com`. `Reply-To` is set to the prospect, so replying
+from the shared inbox reaches them rather than the sending robot.
+
+Three files in `api/` do the work:
+
+- `contact.php` — validation, honeypot, per-IP rate limit, message composition.
+- `smtp.php` — a small self-contained SMTP client. Hostinger's shared plans have
+  no Composer, so this speaks just enough of RFC 5321 to submit one message over
+  an authenticated, encrypted connection rather than vendoring PHPMailer.
+- `config.php` — live credentials. Gitignored, blocked by `.htaccess`, and built
+  into `dist/api/` so there is nothing to create on the server.
+
+`info@dealworkx.com` is only ever a *recipient*, which is deliberate: it needs no
+verification and no mailbox access, and it can be a Google group or alias.
+
+Two values in `config.php` may need attention:
+
+1. **`MAIL_FROM` must be a verified sender in Brevo** (Senders, Domains &
+   Dedicated IPs). Brevo rejects unverified senders outright. A Brevo signup
+   address is verified automatically, which is what the default uses. Once you
+   can add DNS records for `dealworkx.com`, authenticate the domain in Brevo and
+   change this to `forms@dealworkx.com` — a company-domain sender is filtered far
+   less often than a `gmail.com` one, and reads correctly in the client's inbox.
+2. **`SMTP_PORT`** is 587. If submissions time out, Hostinger is blocking
+   outbound SMTP on that port; Brevo also listens on 465 (with `SMTP_SECURITY`
+   set to `'ssl'`) and 2525 (keep `'tls'`).
+
+Verify before launch, because a silently-swallowed lead looks identical to a
+delivered one:
+
+```bash
+curl -i https://dealworkx.com/api/contact.php \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Test Person","email":"you@example.com","company":"Test Co",
+       "interest":"Appointment setting","message":"Checking the endpoint works."}'
+```
+
+`{"ok":true}` means Brevo accepted it. Cross-check under Brevo → *Transactional →
+Logs*, which shows whether it was then delivered, deferred or bounced — useful
+precisely because you may not be able to read the destination inbox. Anything
+else: read `api/contact-errors.log`, which holds the SMTP transcript with
+credentials withheld.
+
+Then submit through the real form and confirm the success screen. A delivery
+failure now shows the form's failure state with the mailto fallback, so the
+screen and reality can no longer disagree.
+
+Once confirmed, set `LOG_ERRORS` to `false`.
+
+`ALLOWED_ORIGINS` ships empty, which disables origin checking. An `Origin` header
+is trivial to forge outside a browser so it was never real protection, while
+getting it wrong (temporary `*.hostingersite.com` domain, www vs apex) returns
+403 on every submission. The honeypot and rate limit still apply. To enable it,
+list the exact origins served.
+
+Local `npm run dev` does not run PHP, so submits are short-circuited and logged
+to the browser console. Set `VITE_CONTACT_ENDPOINT` to test against the deployed
+endpoint.
+
+### DNS warning
+
+If you point `dealworkx.com` at Hostinger by changing **nameservers**, Hostinger's
+DNS zone will not contain the Google Workspace MX records and all mail to
+`info@` stops arriving — the form's included. Add the MX records in hPanel → DNS
+Zone Editor first, along with any SPF/DKIM/DMARC records. Pointing only the A
+record at Hostinger avoids this entirely.
+
+### Other hosts
+
+On Netlify/Vercel/S3 the `.htaccess` is ignored — add an SPA rewrite (all paths
+→ `/index.html`) and port `api/contact.php` to a serverless function.

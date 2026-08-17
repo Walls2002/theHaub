@@ -7,6 +7,12 @@ export const site = {
   legal: 'DealWorkx Partners, Inc.',
   founded: 2019,
   bookingUrl: 'https://calendly.com/dealworkx/intro',
+
+  // Contact form target: the PHP endpoint uploaded alongside the site, which
+  // relays through Brevo to info@dealworkx.com. Credentials live in
+  // api/config.php on the server, never in this file.
+  contactEndpoint: '/api/contact.php',
+
   contact: {
     email: 'info@dealworkx.com',
     phone: '+1 (628) 555-0142',

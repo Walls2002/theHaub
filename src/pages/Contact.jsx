@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import Arrow from '../components/Arrow'
-import images from '../data/images'
 import { site } from '../data/site'
 import { faqs } from '../data/content'
 
@@ -38,10 +37,42 @@ function validate(values) {
   }, {})
 }
 
-// No backend yet. Point this at your form endpoint or CRM; anything it throws
-// surfaces as the failure state below, with the mailto address as the fallback.
+// Posts to the PHP endpoint in public/api/, which validates the submission again
+// server-side and relays it through Brevo's SMTP to info@dealworkx.com. Anything
+// thrown here surfaces as the form's failure state, with the mailto address as
+// the fallback, so a delivery problem is never shown to a visitor as a success.
+const ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || site.contactEndpoint
+
 async function submitMessage(payload) {
-  return payload
+  // Vite's dev server does not run PHP, so a local submit would always fail and
+  // look like a broken form. Short-circuit it and log what would have been sent.
+  if (import.meta.env.DEV && !import.meta.env.VITE_CONTACT_ENDPOINT) {
+    console.info('[contact] dev mode, not sent:', payload)
+    return
+  }
+
+  // Give up rather than leave the button spinning if the host never answers.
+  const abort = new AbortController()
+  const timer = setTimeout(() => abort.abort(), 20000)
+
+  let response
+  try {
+    response = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: abort.signal
+    })
+  } finally {
+    clearTimeout(timer)
+  }
+
+  // A 200 that is not our own {ok:true} means something else answered — a host
+  // error page, a redirect to index.html. Treat it as a failure, not a send.
+  const result = await response.json().catch(() => null)
+  if (!response.ok || !result?.ok) {
+    throw new Error(result?.error || `Contact endpoint returned ${response.status}`)
+  }
 }
 
 function ContactForm() {
@@ -307,13 +338,6 @@ export default function Contact() {
             {/* ------------------------------ Left column ----------------------------- */}
             <div>
               <Reveal className="person">
-                <span className="person__photo">
-                  <img src={images.founder} alt="Elias Navarro, founder of DealWorkx" />
-                </span>
-                <div>
-                  <div className="person__name">Elias Navarro</div>
-                  <div className="person__role">Founder &amp; Managing Partner</div>
-                </div>
                 <a className="btn" href={site.bookingUrl} target="_blank" rel="noreferrer">
                   Book a 30-minute call <Arrow />
                 </a>

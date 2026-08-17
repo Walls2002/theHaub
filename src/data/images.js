@@ -24,10 +24,7 @@ export const images = {
     { src: u('1497366811353-6870744d04b2', 1200), alt: 'Operations desk with live pipeline reporting', caption: 'Live pipeline desk' },
     { src: u('1600880292089-90a7e086ee0c', 1200), alt: 'Specialist on a discovery call taking notes', caption: 'Discovery call, recorded and scored' },
     { src: u('1517048676732-d65bc937f952', 1200), alt: 'Weekly business review in a meeting room', caption: 'Friday review with client AEs' }
-  ],
-
-  // People
-  founder: u('1560250097-0b93528c311a', 800)
+  ]
 }
 
 export default images

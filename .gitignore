@@ -3,3 +3,7 @@ dist
 .DS_Store
 *.local
 .vite
+
+# Live mail credentials and the endpoint's debug log. Never commit these.
+public/api/config.php
+public/api/contact-errors.log

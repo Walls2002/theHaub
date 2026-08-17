@@ -1,0 +1,57 @@
+# Hostinger (Apache). Vite copies this file verbatim into dist/ at build time.
+
+# ---------------------------------------------------------------- SPA routing
+# React Router owns /about, /work, /contact. Without this, a direct hit or a
+# refresh on those paths asks Apache for a file that does not exist and returns
+# 404. Send anything that is not a real file or a real directory to index.html
+# and let the router resolve it.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ------------------------------------------------------------------- Caching
+# Hashed asset filenames (index-CA-oDRgj.js) change on every build, so they are
+# safe to cache forever. index.html must never be cached, or returning visitors
+# keep loading the old build's asset names.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<FilesMatch "\.(css|js|woff2|svg|webp)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+
+<FilesMatch "^(index\.html|\.htaccess)$">
+  Header set Cache-Control "no-cache, must-revalidate"
+</FilesMatch>
+
+# ------------------------------------------------------------------ Hardening
+# config.php holds the Brevo SMTP key and contact-errors.log holds SMTP
+# transcripts. Both sit inside the web root, so both must be unreachable.
+<FilesMatch "^(config\.php|contact-errors\.log|\.env)$">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ------------------------------------------------------------------ Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml
+</IfModule>
