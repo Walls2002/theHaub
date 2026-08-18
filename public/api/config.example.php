@@ -1,15 +1,27 @@
-<?php
 /**
- * Copy this file to config.php ON THE SERVER (public_html/api/config.php) and
- * fill in the real values. config.php is gitignored and denied by .htaccess, so
- * it never lands in the repo and is never served over HTTP.
+ * Two ways to supply credentials. contact.php checks the environment first and
+ * falls back to this file, so pick whichever your host supports.
  *
- * Configured for Brevo SMTP. Brevo signs and sends the mail; info@dealworkx.com
- * stays on Google Workspace and simply receives it. Nothing about your Workspace
- * setup has to change, and it does not matter whether info@ is a real mailbox, a
- * group, or an alias — it is only ever a recipient here.
+ * 1. ENVIRONMENT VARIABLES (nothing to create, nothing to keep secret in a file)
  *
- * Everything marked TODO must be replaced before the form will send.
+ *      DEALWORKX_SMTP_HOST, DEALWORKX_SMTP_PORT, DEALWORKX_SMTP_SECURITY,
+ *      DEALWORKX_SMTP_USER, DEALWORKX_SMTP_PASS,
+ *      DEALWORKX_MAIL_FROM, DEALWORKX_MAIL_FROM_NAME, DEALWORKX_MAIL_TO
+ *
+ *    Works only if the host actually exposes its variables to PHP. On Hostinger
+ *    shared hosting the hPanel Node.js variables reach the Node process and not
+ *    PHP, so this usually needs option 2 instead. Test with api/diag.php.
+ *
+ * 2. THIS FILE. Copy it to config.php and fill in the values.
+ *
+ *    Create it on the SERVER, inside the repository checkout at
+ *    public/api/config.php — not inside dist/. It is gitignored, so git pull
+ *    leaves it alone on every deploy, and the build copies it into dist/api/
+ *    each time. A copy placed directly in dist/ would be erased by the next
+ *    build, because Vite empties that directory first.
+ *
+ * Never commit config.php. GitHub push protection blocks pushes containing an
+ * SMTP key, and on a public repository it would be scraped within hours.
  */
 
 declare(strict_types=1);

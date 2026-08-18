@@ -60,6 +60,24 @@ if (!file_exists($configPath)) {
     }
 }
 
+echo "\n=== environment variables visible to PHP ===\n";
+echo "If these show values, credentials can live in the host panel instead of a file.\n\n";
+$envKeys = array('DEALWORKX_SMTP_HOST', 'DEALWORKX_SMTP_USER', 'DEALWORKX_SMTP_PASS', 'DEALWORKX_MAIL_FROM', 'DEALWORKX_MAIL_TO');
+foreach ($envKeys as $key) {
+    $value = getenv($key);
+    if ($value === false && isset($_SERVER[$key])) { $value = $_SERVER[$key]; }
+    if ($value === false && isset($_ENV[$key]))    { $value = $_ENV[$key]; }
+
+    echo str_pad($key . ':', 34);
+    if ($value === false || $value === '') {
+        echo "not set\n";
+    } elseif (strpos($key, 'PASS') !== false) {
+        echo 'set, ' . strlen($value) . " chars\n";
+    } else {
+        echo $value . "\n";
+    }
+}
+
 echo "\n=== outbound SMTP reachability ===\n";
 echo "This is the answer to whether Hostinger blocks outbound mail ports.\n\n";
 

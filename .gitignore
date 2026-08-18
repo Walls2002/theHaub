@@ -4,6 +4,9 @@ dist
 *.local
 .vite
 
-# Live mail credentials and the endpoint's debug log. Never commit these.
+# Never commit the live mail credentials. GitHub push protection blocks it, and
+# on a public repo the key would be scraped within hours. contact.php reads them
+# from the environment first and only falls back to this file, so the copy that
+# matters lives on the server, not here. See public/api/config.example.php.
 public/api/config.php
 public/api/contact-errors.log

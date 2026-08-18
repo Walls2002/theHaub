@@ -35,6 +35,39 @@ const INTERESTS = [
     'Not sure yet',
 ];
 
+const SETTINGS = [
+    'SMTP_HOST',
+    'SMTP_PORT',
+    'SMTP_SECURITY',
+    'SMTP_USER',
+    'SMTP_PASS',
+    'MAIL_FROM',
+    'MAIL_FROM_NAME',
+    'MAIL_TO',
+];
+
+/**
+ * Read one setting from the environment, checking the three places a host might
+ * expose it. Names are prefixed DEALWORKX_ so they cannot collide with anything
+ * else on a shared server: DEALWORKX_SMTP_PASS, DEALWORKX_MAIL_TO, and so on.
+ *
+ * Returns null when unset, which is distinct from an empty value.
+ */
+function envValue(string $key): ?string
+{
+    $name = 'DEALWORKX_' . $key;
+
+    foreach ([$_ENV, $_SERVER] as $bag) {
+        if (isset($bag[$name]) && is_scalar($bag[$name]) && (string) $bag[$name] !== '') {
+            return (string) $bag[$name];
+        }
+    }
+
+    $value = getenv($name);
+
+    return ($value === false || $value === '') ? null : $value;
+}
+
 /**
  * mbstring is usually present on Hostinger but is not guaranteed, and a fatal
  * "undefined function" here would look identical to a mail failure. Degrade to
@@ -180,15 +213,31 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(405, ['ok' => false, 'error' => 'This endpoint only accepts POST.']);
 }
 
+// Credentials come from the environment first and config.php only as a fallback,
+// so the secret never has to live in this repository. Either source alone is
+// enough; when both are present the environment wins.
+$config = [];
+
 $configPath = __DIR__ . '/config.php';
-if (!is_file($configPath)) {
-    // Deliberately loud: a missing config must never look like a delivered lead.
-    respond(500, ['ok' => false, 'error' => 'Mail is not configured on this server (api/config.php is missing).']);
+if (is_file($configPath)) {
+    $fromFile = require $configPath;
+    if (!is_array($fromFile)) {
+        respond(500, ['ok' => false, 'error' => 'api/config.php did not return a configuration array.']);
+    }
+    $config = $fromFile;
 }
 
-$config = require $configPath;
-if (!is_array($config)) {
-    respond(500, ['ok' => false, 'error' => 'api/config.php did not return a configuration array.']);
+foreach (SETTINGS as $key) {
+    $value = envValue($key);
+    if ($value !== null) {
+        $config[$key] = $key === 'SMTP_PORT' ? (int) $value : $value;
+    }
+}
+
+if ($config === []) {
+    // Deliberately loud: an unconfigured endpoint must never look like a
+    // delivered lead.
+    respond(500, ['ok' => false, 'error' => 'Mail is not configured on this server: set DEALWORKX_SMTP_* or create api/config.php.']);
 }
 
 $allowedOrigins = is_array($config['ALLOWED_ORIGINS'] ?? null) ? $config['ALLOWED_ORIGINS'] : [];
