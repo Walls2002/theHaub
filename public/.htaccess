@@ -9,6 +9,19 @@
   RewriteEngine On
   RewriteBase /
 
+  # --- Canonical host and scheme -------------------------------------------
+  # Google indexed http://dealworkx.com, so the http and https versions were
+  # competing as separate URLs and splitting their ranking signals. Redirect
+  # both http and www to one canonical origin, https://dealworkx.com, before
+  # any other rule runs. 301 so search engines transfer the old URL's standing
+  # rather than treating this as a temporary detour.
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://dealworkx.com%{REQUEST_URI} [R=301,L]
+
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+  # --- SPA routing ----------------------------------------------------------
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
