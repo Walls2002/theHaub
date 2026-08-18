@@ -10,3 +10,10 @@ dist
 # matters lives on the server, not here. See public/api/config.example.php.
 public/api/config.php
 public/api/contact-errors.log
+
+# Credential files. .env exists only to be imported into the host's control
+# panel; it must never be committed. GitHub push protection would reject it, and
+# on a public repo the key would be scraped within hours.
+.env
+.env.*
+!.env.example
