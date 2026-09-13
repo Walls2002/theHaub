@@ -267,8 +267,8 @@ function renderHtmlEmail(
 
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:100%;max-width:600px;background:#ffffff;border:1px solid #dde4e1;border-radius:6px;">
 
-  <tr><td style="background:#14181a;padding:22px 28px;border-radius:6px 6px 0 0;">
-    <img src="cid:dealworkx-logo" alt="DealWorkx" width="124" style="display:block;border:0;outline:none;width:124px;height:auto;">
+  <tr><td align="center" style="background:#14181a;padding:26px 28px;border-radius:6px 6px 0 0;">
+    <img src="cid:dealworkx-logo" alt="DealWorkx" width="132" style="display:block;margin:0 auto;border:0;outline:none;width:132px;height:auto;">
   </td></tr>
 
   <tr><td style="padding:30px 28px 4px;">

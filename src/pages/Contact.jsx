@@ -3,6 +3,7 @@ import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import Arrow from '../components/Arrow'
 import Select from '../components/Select'
+import BookingModal, { hasBooking } from '../components/BookingModal'
 import { site } from '../data/site'
 import { faqs } from '../data/content'
 
@@ -183,7 +184,7 @@ function ContactForm() {
   const submitting = status === 'submitting'
 
   return (
-    <form className="form" onSubmit={onSubmit} noValidate ref={formRef}>
+    <form className="form" id="enquiry" onSubmit={onSubmit} noValidate ref={formRef}>
       {status === 'failed' && (
         <p className="form__alert" role="alert">
           That did not send. Try again, or email us directly at{' '}
@@ -333,6 +334,21 @@ function ContactForm() {
 
 export default function Contact() {
   const [openFaq, setOpenFaq] = useState(0)
+  const [booking, setBooking] = useState(false)
+
+  // With a scheduler configured the button opens it. Without one, a bare
+  // #enquiry jump does nothing visible on desktop, where the form already sits
+  // beside the button, so take the visitor into the first field instead.
+  const onBookClick = (e) => {
+    e.preventDefault()
+    if (hasBooking()) {
+      setBooking(true)
+      return
+    }
+    document.getElementById('enquiry')?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    // Focus after the scroll settles, or the browser cancels one for the other.
+    window.setTimeout(() => document.getElementById('name')?.focus({ preventScroll: true }), 420)
+  }
 
   return (
     <>
@@ -349,9 +365,9 @@ export default function Contact() {
             {/* ------------------------------ Left column ----------------------------- */}
             <div>
               <Reveal className="person">
-                <a className="btn" href={site.bookingUrl} target="_blank" rel="noreferrer">
-                  Book a 30-minute call <Arrow />
-                </a>
+                <button type="button" className="btn" onClick={onBookClick}>
+                  {site.booking.label} <Arrow />
+                </button>
               </Reveal>
 
               <Reveal delay={80} className="detail-list">
@@ -395,6 +411,9 @@ export default function Contact() {
           </div>
         </div>
       </section>
+
+      {/* --------------------------------- Booking -------------------------------- */}
+      <BookingModal open={booking} onClose={() => setBooking(false)} />
 
       {/* ----------------------------------- FAQ ---------------------------------- */}
       <section className="section section--muted">
