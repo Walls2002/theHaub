@@ -13,9 +13,10 @@ import { useEffect, useRef, useState } from 'react'
  * onChange is handed a synthetic {target:{value}} so it drops straight into the
  * same update(key) handler the inputs use.
  */
-export default function Select({ id, name, value, options, onChange }) {
+export default function Select({ id, name, value, options, onChange, placeholder }) {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(() => Math.max(0, options.indexOf(value)))
+  const empty = !value
   const rootRef = useRef(null)
   const listRef = useRef(null)
   const buttonRef = useRef(null)
@@ -124,7 +125,9 @@ export default function Select({ id, name, value, options, onChange }) {
         onClick={() => setOpen((v) => !v)}
         onKeyDown={onKeyDown}
       >
-        <span>{value}</span>
+        <span className={empty ? 'select__placeholder' : undefined}>
+          {empty ? placeholder || 'Select one' : value}
+        </span>
         <svg className="select__chevron" width="11" height="7" viewBox="0 0 11 7" aria-hidden="true">
           <path d="M1 1l4.5 4.5L10 1" fill="none" stroke="currentColor" strokeWidth="1.4" />
         </svg>

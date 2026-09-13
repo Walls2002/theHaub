@@ -698,6 +698,53 @@
   color: var(--ink);
 }
 
+/* The form needs far less room than a month grid, and should not stretch to
+   fill a tall screen the way the calendar does. */
+.bmodal--form {
+  width: min(680px, 94vw);
+  height: auto;
+  max-height: 92dvh;
+}
+
+/* Scrolls on its own, so the title bar stays put while the form moves. */
+.bmodal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 26px 24px 30px;
+}
+
+.bmodal__lede {
+  margin-bottom: 26px;
+  padding-bottom: 22px;
+  border-bottom: var(--rule) solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+/* The form's own top rule would double up with the lede's. */
+.bmodal__body .form {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* A button that has to read as a link, because it opens a dialog rather than
+   navigating: an <a> with no href would be a lie to a screen reader. */
+.linkbtn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  border-bottom: var(--rule) solid var(--line-strong);
+  transition: border-color 0.24s var(--ease);
+}
+
+.linkbtn:hover {
+  border-bottom-color: var(--accent);
+}
+
 /* On a phone the booking page stacks and gets tall, so give it everything. */
 @media (max-width: 760px) {
   .bmodal {
@@ -708,6 +755,11 @@
     max-height: 100dvh;
     margin: 0;
     border-radius: 0;
+  }
+
+  .bmodal--form {
+    height: auto;
+    max-height: 100dvh;
   }
 }
 
@@ -750,6 +802,7 @@
 }
 
 .bmodal__close {
+  margin-left: auto;
   display: grid;
   place-items: center;
   width: 32px;
@@ -923,6 +976,13 @@
 
 .select.is-open .select__button {
   border-bottom-color: var(--accent);
+}
+
+/* Matches the inputs' placeholder, so an unanswered select reads as unanswered
+   rather than as a chosen value. */
+.select__placeholder {
+  color: var(--ink-3);
+  opacity: 0.7;
 }
 
 .select__chevron {
