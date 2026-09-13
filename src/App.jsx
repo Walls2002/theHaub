@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
+import BookingProvider from './components/BookingProvider'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
@@ -10,7 +11,7 @@ import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
-    <>
+    <BookingProvider>
       <a className="skip" href="#main">
         Skip to content
       </a>
@@ -26,6 +27,6 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </BookingProvider>
   )
 }

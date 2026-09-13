@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { nav, site } from '../data/site'
+import { useBooking } from './BookingProvider'
 import Arrow from './Arrow'
 
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [stuck, setStuck] = useState(false)
   const { pathname } = useLocation()
+  const { openBooking, bookingAvailable } = useBooking()
 
   useEffect(() => setOpen(false), [pathname])
 
@@ -44,9 +46,17 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link to="/contact" className="btn header__cta">
-          Book a demo <Arrow size={12} />
-        </Link>
+        {/* Falls back to the contact page when no schedule is configured, so
+            the bar never carries a button that does nothing. */}
+        {bookingAvailable ? (
+          <button type="button" className="btn header__cta" onClick={openBooking}>
+            Book a demo <Arrow size={12} />
+          </button>
+        ) : (
+          <Link to="/contact" className="btn header__cta">
+            Book a demo <Arrow size={12} />
+          </Link>
+        )}
 
         <button
           type="button"
@@ -76,9 +86,25 @@ export default function Header() {
             <a className="tlink" href={`mailto:${site.contact.email}`}>
               {site.contact.email}
             </a>
-            <Link to="/contact" className="btn" style={{ justifyContent: 'center' }}>
-              Book a demo <Arrow size={12} />
-            </Link>
+            {bookingAvailable ? (
+              <button
+                type="button"
+                className="btn"
+                style={{ justifyContent: 'center' }}
+                onClick={() => {
+                  // The drawer closes on navigation, and opening a dialog is not
+                  // one, so dismiss it by hand or it sits behind the backdrop.
+                  setOpen(false)
+                  openBooking()
+                }}
+              >
+                Book a demo <Arrow size={12} />
+              </button>
+            ) : (
+              <Link to="/contact" className="btn" style={{ justifyContent: 'center' }}>
+                Book a demo <Arrow size={12} />
+              </Link>
+            )}
           </div>
         </div>
       )}

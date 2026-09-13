@@ -2,15 +2,15 @@ import { useState } from 'react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import Arrow from '../components/Arrow'
-import BookingModal, { hasBooking } from '../components/BookingModal'
 import EnquiryModal from '../components/EnquiryModal'
+import { useBooking } from '../components/BookingProvider'
 import { site } from '../data/site'
 import { faqs } from '../data/content'
 
 export default function Contact() {
   const [openFaq, setOpenFaq] = useState(0)
-  const [booking, setBooking] = useState(false)
   const [enquiry, setEnquiry] = useState(false)
+  const { openBooking, bookingAvailable } = useBooking()
 
   // Booking replaced the enquiry form: the questions it used to ask are now on
   // Google's booking form, so the answers arrive attached to the invitation.
@@ -18,8 +18,8 @@ export default function Contact() {
   // rather than leaving a button that does nothing.
   const onBookClick = (e) => {
     e.preventDefault()
-    if (hasBooking()) {
-      setBooking(true)
+    if (bookingAvailable) {
+      openBooking()
       return
     }
     setEnquiry(true)
@@ -96,7 +96,6 @@ export default function Contact() {
       </section>
 
       {/* --------------------------------- Booking -------------------------------- */}
-      <BookingModal open={booking} onClose={() => setBooking(false)} />
       <EnquiryModal open={enquiry} onClose={() => setEnquiry(false)} />
 
       {/* ----------------------------------- FAQ ---------------------------------- */}
