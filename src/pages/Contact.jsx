@@ -2,8 +2,19 @@ import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../components/PageHeader'
 import Reveal from '../components/Reveal'
 import Arrow from '../components/Arrow'
+import Select from '../components/Select'
 import { site } from '../data/site'
 import { faqs } from '../data/content'
+
+// Mirrors INTERESTS in public/api/contact.php. The endpoint rejects anything
+// outside its own list, so the two have to move together.
+const INTERESTS = [
+  'Appointment setting',
+  'Lead research',
+  'Outreach infrastructure',
+  'CRM and handover',
+  'Not sure yet'
+]
 
 const EMPTY = {
   name: '',
@@ -258,13 +269,13 @@ function ContactForm() {
             <label className="field__label" htmlFor="interest">
               What you need
             </label>
-            <select id="interest" name="interest" value={values.interest} onChange={update('interest')}>
-              <option>Appointment setting</option>
-              <option>Lead research</option>
-              <option>Outreach infrastructure</option>
-              <option>CRM and handover</option>
-              <option>Not sure yet</option>
-            </select>
+            <Select
+              id="interest"
+              name="interest"
+              value={values.interest}
+              onChange={update('interest')}
+              options={INTERESTS}
+            />
           </div>
         </div>
 

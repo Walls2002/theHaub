@@ -201,6 +201,163 @@ function logError(array $config, string $message): void
     );
 }
 
+// ----------------------------------------------------------------- email body
+
+const MIME_RELATED     = 'dwx-rel-4f81c2a7';
+const MIME_ALTERNATIVE = 'dwx-alt-9b3e60d4';
+
+/**
+ * The HTML half of the notification.
+ *
+ * Tables and inline styles throughout, because Gmail strips <style> blocks and
+ * no mail client can be trusted with flexbox. Every value that came from the
+ * form is escaped: the message field is free text from a stranger.
+ *
+ * The logo rides on a dark band. Its wordmark is brushed silver and disappears
+ * on white, which is the same reason the site header is dark.
+ */
+function renderHtmlEmail(
+    string $name,
+    string $email,
+    string $company,
+    string $interest,
+    string $message,
+    string $submitted,
+    string $ip
+): string {
+    $e = static fn (string $v): string => htmlspecialchars($v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+
+    $labelStyle = 'padding:0 16px 16px 0;width:96px;vertical-align:top;'
+        . 'font:400 11px/1.6 Arial,Helvetica,sans-serif;letter-spacing:0.09em;'
+        . 'text-transform:uppercase;color:#78837f;';
+    $valueStyle = 'padding:0 0 16px;vertical-align:top;'
+        . 'font:400 15px/1.55 Arial,Helvetica,sans-serif;color:#14181a;';
+
+    $rows = [
+        ['Name', $e($name)],
+        ['Email', '<a href="mailto:' . $e($email) . '" style="color:#0f5a48;text-decoration:none;border-bottom:1px solid #b9cdc4;">' . $e($email) . '</a>'],
+        ['Company', $company !== '' ? $e($company) : '<span style="color:#9aa5a1;">Not given</span>'],
+        ['Needs', $e($interest)],
+    ];
+
+    $rowsHtml = '';
+    foreach ($rows as $row) {
+        $rowsHtml .= '<tr><td style="' . $labelStyle . '">' . $row[0] . '</td>'
+            . '<td style="' . $valueStyle . '">' . $row[1] . '</td></tr>';
+    }
+
+    $messageHtml = nl2br($e($message), false);
+    $replyTo     = $e($email);
+    $safeName    = $e($name);
+    $safeIp      = $e($ip);
+    $safeStamp   = $e($submitted);
+
+    return <<<HTML
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New enquiry</title>
+</head>
+<body style="margin:0;padding:0;background:#eef2f0;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">New enquiry from {$safeName} via the DealWorkx contact form.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef2f0;">
+<tr><td align="center" style="padding:28px 12px;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="width:100%;max-width:600px;background:#ffffff;border:1px solid #dde4e1;border-radius:6px;">
+
+  <tr><td style="background:#14181a;padding:22px 28px;border-radius:6px 6px 0 0;">
+    <img src="cid:dealworkx-logo" alt="DealWorkx" width="124" style="display:block;border:0;outline:none;width:124px;height:auto;">
+  </td></tr>
+
+  <tr><td style="padding:30px 28px 4px;">
+    <div style="font:700 11px/1 Arial,Helvetica,sans-serif;letter-spacing:0.16em;text-transform:uppercase;color:#0f5a48;">New enquiry</div>
+    <div style="padding-top:10px;font:700 21px/1.3 Arial,Helvetica,sans-serif;color:#14181a;">{$safeName} got in touch</div>
+  </td></tr>
+
+  <tr><td style="padding:22px 28px 0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{$rowsHtml}</table>
+  </td></tr>
+
+  <tr><td style="padding:6px 28px 0;">
+    <div style="font:700 11px/1 Arial,Helvetica,sans-serif;letter-spacing:0.09em;text-transform:uppercase;color:#78837f;padding-bottom:10px;">The problem, in their words</div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f8f7;border-left:3px solid #2f9e6a;">
+      <tr><td style="padding:16px 18px;font:400 15px/1.65 Arial,Helvetica,sans-serif;color:#2c3936;">{$messageHtml}</td></tr>
+    </table>
+  </td></tr>
+
+  <tr><td style="padding:24px 28px 4px;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+      <tr><td style="background:#14181a;border-radius:3px;">
+        <a href="mailto:{$replyTo}" style="display:inline-block;padding:13px 24px;font:700 14px/1 Arial,Helvetica,sans-serif;color:#ffffff;text-decoration:none;">Reply to {$safeName}</a>
+      </td></tr>
+    </table>
+    <div style="padding-top:12px;font:400 13px/1.5 Arial,Helvetica,sans-serif;color:#78837f;">Replying to this email reaches them directly.</div>
+  </td></tr>
+
+  <tr><td style="padding:22px 28px 26px;">
+    <div style="border-top:1px solid #e6ebe9;padding-top:16px;font:400 12px/1.7 Arial,Helvetica,sans-serif;color:#9aa5a1;">
+      Submitted {$safeStamp}<br>
+      From IP {$safeIp}<br>
+      Sent automatically by the dealworkx.com contact form.
+    </div>
+  </td></tr>
+
+</table>
+
+</td></tr>
+</table>
+</body>
+</html>
+HTML;
+}
+
+/**
+ * Wrap the two bodies and the logo into one MIME tree:
+ *
+ *   multipart/related
+ *     multipart/alternative
+ *       text/plain      <- what notification previews show
+ *       text/html       <- what the inbox shows
+ *     image/png         <- referenced as cid:dealworkx-logo
+ *
+ * The logo is embedded rather than linked so it renders without the recipient
+ * having to allow remote images. When it is missing the tree collapses to the
+ * alternative pair and the header band simply comes through empty.
+ */
+function buildMimeBody(string $text, string $html, ?string $logo): string
+{
+    $crlf = "\r\n";
+    $b64  = static fn (string $raw): string => chunk_split(base64_encode($raw), 76, "\r\n");
+
+    $alt = '--' . MIME_ALTERNATIVE . $crlf
+        . 'Content-Type: text/plain; charset=UTF-8' . $crlf
+        . 'Content-Transfer-Encoding: base64' . $crlf . $crlf
+        . $b64($text)
+        . '--' . MIME_ALTERNATIVE . $crlf
+        . 'Content-Type: text/html; charset=UTF-8' . $crlf
+        . 'Content-Transfer-Encoding: base64' . $crlf . $crlf
+        . $b64($html)
+        . '--' . MIME_ALTERNATIVE . '--' . $crlf;
+
+    $body = 'This is a multi-part message in MIME format.' . $crlf . $crlf
+        . '--' . MIME_RELATED . $crlf
+        . 'Content-Type: multipart/alternative; boundary="' . MIME_ALTERNATIVE . '"' . $crlf . $crlf
+        . $alt . $crlf;
+
+    if ($logo !== null && $logo !== '') {
+        $body .= '--' . MIME_RELATED . $crlf
+            . 'Content-Type: image/png; name="dealworkx-logo.png"' . $crlf
+            . 'Content-Transfer-Encoding: base64' . $crlf
+            . 'Content-ID: <dealworkx-logo>' . $crlf
+            . 'Content-Disposition: inline; filename="dealworkx-logo.png"' . $crlf . $crlf
+            . $b64($logo) . $crlf;
+    }
+
+    return $body . '--' . MIME_RELATED . '--' . $crlf;
+}
+
 // ---------------------------------------------------------------------- guards
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
@@ -316,7 +473,11 @@ if ($smtpUser === '' || $smtpPass === '' || $to === '') {
     respond(500, ['ok' => false, 'error' => 'Mail configuration is incomplete.']);
 }
 
-$body = implode("\n", [
+$submitted = gmdate('D, d M Y H:i:s') . ' UTC';
+
+// The plain-text half still matters: it is what lock-screen previews, watches
+// and text-only clients show, so it stays a complete account on its own.
+$textBody = implode("\n", [
     'New enquiry from the DealWorkx contact form.',
     '',
     'Name:     ' . $name,
@@ -329,10 +490,19 @@ $body = implode("\n", [
     $message,
     '',
     str_repeat('-', 42),
-    'Submitted: ' . gmdate('D, d M Y H:i:s') . ' UTC',
+    'Submitted: ' . $submitted,
     'IP:        ' . $ip,
     'Reply directly to this email to reach them.',
 ]);
+
+$htmlBody = renderHtmlEmail($name, $email, $company, $interest, $message, $submitted, $ip);
+
+// The logo sits at the web root, one level up from api/. A missing file is not
+// worth failing a lead over, so the email goes out without it.
+$logoPath = __DIR__ . '/../brand/logo.png';
+$logoData = is_readable($logoPath) ? @file_get_contents($logoPath) : false;
+
+$body = buildMimeBody($textBody, $htmlBody, $logoData === false ? null : $logoData);
 
 $headers = [
     'Date'                      => gmdate('D, j M Y H:i:s') . ' +0000',
@@ -344,8 +514,8 @@ $headers = [
     'Subject'                   => encodeHeader($interest . ' / ' . $name . ($company !== '' ? ' (' . $company . ')' : '')),
     'Message-ID'                => '<' . bin2hex(random_bytes(12)) . '@' . (explode('@', $from)[1] ?? 'dealworkx.com') . '>',
     'MIME-Version'              => '1.0',
-    'Content-Type'              => 'text/plain; charset=UTF-8',
-    'Content-Transfer-Encoding' => 'base64',
+    'Content-Type'              => 'multipart/related; type="multipart/alternative"; boundary="' . MIME_RELATED . '"',
+    'Content-Transfer-Encoding' => '7bit',
     'Auto-Submitted'            => 'auto-generated',
     'X-Mailer'                  => 'DealWorkx site',
 ];
@@ -363,7 +533,7 @@ try {
         $from,
         $to,
         $headers,
-        chunk_split(base64_encode($body), 76, "\r\n")
+        $body
     );
 } catch (Throwable $e) {
     logError($config, $e->getMessage() . "\nSMTP transcript:\n" . $smtp->trace());
