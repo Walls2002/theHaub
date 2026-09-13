@@ -1,6 +1,6 @@
 <?php
 /**
- * TEMPORARY DIAGNOSTIC — delete once the form works.
+ * TEMPORARY DIAGNOSTIC. Delete once the form works.
  *
  * Reports what the server can actually do, so a 500 can be told apart from a
  * blocked port or a stale config. Prints no secrets: the SMTP password is
@@ -46,7 +46,7 @@ foreach (array('config.php', 'contact.php', 'smtp.php') as $file) {
 echo "\n=== config.php contents (password masked) ===\n";
 $configPath = __DIR__ . '/config.php';
 if (!file_exists($configPath)) {
-    echo "config.php is MISSING — this alone causes a 500 from contact.php.\n";
+    echo "config.php is MISSING. This alone causes a 500 from contact.php.\n";
 } else {
     $config = @include $configPath;
     if (!is_array($config)) {

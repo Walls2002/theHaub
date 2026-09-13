@@ -67,7 +67,7 @@ async function submitMessage(payload) {
     clearTimeout(timer)
   }
 
-  // A 200 that is not our own {ok:true} means something else answered — a host
+  // A 200 that is not our own {ok:true} means something else answered, such as
   // error page, a redirect to index.html. Treat it as a failure, not a send.
   const result = await response.json().catch(() => null)
   if (!response.ok || !result?.ok) {

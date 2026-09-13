@@ -144,7 +144,7 @@ final class Smtp
         // this one is easier to trace when a password is wrong.
         $this->command('AUTH LOGIN', [334]);
         // Both of these are base64, which is encoding not encryption, so they are
-        // written with logging suppressed — otherwise the App Password lands in
+        // written with logging suppressed, otherwise the App Password lands in
         // contact-errors.log in trivially reversible form.
         $this->write(base64_encode($username) . "\r\n", true);
         $this->expect([334], '<username>');

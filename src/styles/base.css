@@ -2,30 +2,44 @@
    DealWorkx: design tokens, reset, typography, primitives
    Corporate B2B: paper ground, hairline rules, tight grotesque display, flat colour.
    No gradients anywhere. Depth comes from rules, spacing and scale.
+
+   Palette is sampled from the logo: the chart bars run deep teal through
+   emerald to a mint arrow tip, and the D is brushed chrome. So the grounds are
+   cool rather than cream, the greens come straight off the bars, and silver
+   carries the secondary rules.
    ========================================================================== */
 
 :root {
-  /* Surfaces */
-  --paper: #faf8f5;
-  --paper-2: #f2eee8;
-  --paper-3: #e9e3da;
-  --ink: #17171b;
-  --ink-2: #4c4c54;
-  --ink-3: #7a7a84;
+  /* Surfaces: cool off-white, to sit under the logo's silver rather than
+     fight it the way the old warm cream did. */
+  --paper: #f8faf9;
+  --paper-2: #eef2f0;
+  --paper-3: #e0e7e3;
+  --ink: #14181a;
+  --ink-2: #495350;
+  --ink-3: #78837f;
 
-  /* Accent: deep pine. Used sparingly for rules, numerals, marks, button hover. */
-  --accent: #174a3a;
-  --accent-ink: #10362a;
-  --accent-wash: #e2e9e4;
+  /* Accent ramp, read off the logo's chart bars. --accent is the only one
+     dark enough for body-size text on paper; --accent-bright and --accent-mint
+     are for the ink grounds, where the deep teal would disappear. */
+  --accent: #0f5a48;
+  --accent-ink: #0a3f33;
+  --accent-bright: #2f9e6a;
+  --accent-mint: #6ecb9a;
+  --accent-wash: #e5efe9;
+
+  /* The chrome of the D, for marks and secondary rules. */
+  --silver: #c9ced1;
+  --silver-2: #8d9498;
 
   /* Reserved for form errors only, so the accent never has to carry a
      "something is wrong" meaning it isn't shaped for. */
   --danger: #9a2e22;
 
   /* Lines */
-  --line: rgba(23, 23, 27, 0.14);
-  --line-strong: rgba(23, 23, 27, 0.3);
-  --line-invert: rgba(250, 248, 245, 0.18);
+  --line: rgba(20, 24, 26, 0.14);
+  --line-strong: rgba(20, 24, 26, 0.3);
+  --line-invert: rgba(248, 250, 249, 0.18);
 
   /* Type: one grotesque family, two optical widths.
      Headings use the tighter cut at 600; body uses Inter at 400/450.
@@ -161,9 +175,12 @@ select {
 
 .section--dark {
   --line: var(--line-invert);
-  --line-strong: rgba(250, 248, 245, 0.36);
-  --ink-2: rgba(250, 248, 245, 0.72);
-  --ink-3: rgba(250, 248, 245, 0.52);
+  --line-strong: rgba(248, 250, 249, 0.36);
+  --ink-2: rgba(248, 250, 249, 0.72);
+  --ink-3: rgba(248, 250, 249, 0.52);
+  /* The deep teal all but vanishes on ink, so every accent on a dark ground
+     steps up to the brighter green from the top of the chart bars. */
+  --accent: var(--accent-bright);
 }
 
 /* ------------------------------- Typography ------------------------------- */
@@ -321,6 +338,12 @@ select {
   --btn-bg: var(--paper);
   --btn-fg: var(--ink);
   --btn-line: var(--paper);
+}
+
+.section--dark .btn:not(.btn--ghost):hover {
+  --btn-bg: var(--accent-bright);
+  --btn-line: var(--accent-bright);
+  --btn-fg: var(--ink);
 }
 
 .btn-row {

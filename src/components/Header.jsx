@@ -28,9 +28,7 @@ export default function Header() {
     <header className={`header ${stuck ? 'is-stuck' : ''}`}>
       <div className="shell header__inner">
         <Link to="/" className="brand" aria-label={`${site.name} home`}>
-          <span className="brand__mark" />
-          <span>{site.name}</span>
-          <span className="brand__sub">{site.tagline}</span>
+          <img src="/brand/logo.png" alt={site.name} width="391" height="296" />
         </Link>
 
         <nav className="nav" aria-label="Primary">
@@ -47,7 +45,7 @@ export default function Header() {
         </nav>
 
         <Link to="/contact" className="btn header__cta">
-          Book an intro <Arrow size={12} />
+          Book a demo <Arrow size={12} />
         </Link>
 
         <button
@@ -79,7 +77,7 @@ export default function Header() {
               {site.contact.email}
             </a>
             <Link to="/contact" className="btn" style={{ justifyContent: 'center' }}>
-              Book an intro <Arrow size={12} />
+              Book a demo <Arrow size={12} />
             </Link>
           </div>
         </div>

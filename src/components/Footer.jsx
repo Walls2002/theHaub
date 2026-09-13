@@ -14,9 +14,8 @@ export default function Footer() {
       <div className="shell">
         <div className="footer__top">
           <div className="footer__col">
-            <Link to="/" className="brand" style={{ color: 'var(--paper)' }}>
-              <span className="brand__mark" />
-              <span>{site.name}</span>
+            <Link to="/" className="brand brand--lockup" aria-label={`${site.name} home`}>
+              <img src="/brand/logo.png" alt={site.name} width="391" height="296" />
             </Link>
             <p className="body" style={{ marginTop: 18, maxWidth: '34ch' }}>
               Researched outbound and booked meetings for B2B companies that would rather spend

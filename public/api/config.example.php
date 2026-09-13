@@ -15,7 +15,7 @@
  * 2. THIS FILE. Copy it to config.php and fill in the values.
  *
  *    Create it on the SERVER, inside the repository checkout at
- *    public/api/config.php — not inside dist/. It is gitignored, so git pull
+ *    public/api/config.php, not inside dist/. It is gitignored, so git pull
  *    leaves it alone on every deploy, and the build copies it into dist/api/
  *    each time. A copy placed directly in dist/ would be erased by the next
  *    build, because Vite empties that directory first.
@@ -64,7 +64,7 @@ return [
 
     // Only accept posts whose Origin matches one of these. Empty array disables
     // the check. Include both apex and www if both resolve, and add Hostinger's
-    // temporary *.hostingersite.com domain while you are still testing on it —
+    // temporary *.hostingersite.com domain while you are still testing on it,
     // a mismatch here returns 403 on every submission.
     'ALLOWED_ORIGINS' => [
         'https://dealworkx.com',

@@ -4,11 +4,19 @@
 
 /* --------------------------------- Header -------------------------------- */
 
+/* The logo's wordmark and D are brushed silver, drawn for a dark ground; on
+   paper they wash out. An ink bar is what lets the supplied file read at full
+   strength without retouching it. */
 .header {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: var(--paper);
+  background: var(--ink);
+  color: var(--paper);
+  --line: var(--line-invert);
+  --ink-2: rgba(248, 250, 249, 0.7);
+  --ink-3: rgba(248, 250, 249, 0.5);
+  --accent: var(--accent-bright);
   border-bottom: var(--rule) solid transparent;
   transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
 }
@@ -22,43 +30,44 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  height: 78px;
+  height: 82px;
 }
 
+@media (min-width: 900px) {
+  .header__inner {
+    height: 96px;
+  }
+}
+
+/* The logo is a stacked lockup: mark over wordmark over tagline. It carries the
+   name itself, so no type sits beside it, and it needs real height before the
+   wordmark inside it is legible -- which is why the bar below is tall. */
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  gap: 9px;
-  font-family: var(--display);
-  font-weight: var(--display-weight);
-  font-size: 1.32rem;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.brand__mark {
-  width: 9px;
-  height: 9px;
-  background: var(--accent);
-  border-radius: 50%;
-  align-self: center;
+  align-items: center;
   flex: none;
 }
 
-.brand__sub {
-  font-family: var(--sans);
-  font-size: 0.66rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  padding-left: 12px;
-  margin-left: 4px;
-  border-left: var(--rule) solid var(--line);
+.brand img {
+  height: 62px;
+  width: auto;
 }
 
-@media (max-width: 640px) {
-  .brand__sub {
-    display: none;
+@media (min-width: 900px) {
+  .brand img {
+    height: 74px;
+  }
+}
+
+/* The footer has vertical room, so the logo runs larger there. */
+.brand--lockup img {
+  height: auto;
+  width: 216px;
+}
+
+@media (min-width: 900px) {
+  .brand--lockup img {
+    width: 240px;
   }
 }
 
@@ -90,7 +99,7 @@
   right: 0;
   bottom: 0;
   height: 1px;
-  background: var(--ink);
+  background: var(--paper);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.32s var(--ease);
@@ -98,7 +107,7 @@
 
 .nav__link:hover,
 .nav__link.is-active {
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .nav__link:hover::after,
@@ -116,6 +125,19 @@
     padding: 12px 20px;
     font-size: 0.82rem;
   }
+}
+
+/* Buttons in the bar invert, the way they do in any other ink section. */
+.header .btn {
+  --btn-bg: var(--paper);
+  --btn-fg: var(--ink);
+  --btn-line: var(--paper);
+}
+
+.header .btn:hover {
+  --btn-bg: var(--accent-bright);
+  --btn-line: var(--accent-bright);
+  --btn-fg: var(--ink);
 }
 
 /* Mobile toggle */
@@ -144,7 +166,7 @@
 .burger span {
   display: block;
   height: 1.5px;
-  background: var(--ink);
+  background: var(--paper);
   transition: transform 0.3s var(--ease), opacity 0.2s var(--ease);
 }
 
@@ -160,8 +182,8 @@
 
 .drawer {
   position: fixed;
-  inset: 78px 0 0;
-  background: var(--paper);
+  inset: 82px 0 0;
+  background: var(--ink);
   z-index: 55;
   padding: 24px var(--gutter) 48px;
   display: flex;
@@ -207,8 +229,9 @@
   background: var(--ink);
   color: var(--paper);
   --line: var(--line-invert);
-  --ink-2: rgba(250, 248, 245, 0.68);
-  --ink-3: rgba(250, 248, 245, 0.48);
+  --ink-2: rgba(248, 250, 249, 0.68);
+  --ink-3: rgba(248, 250, 249, 0.48);
+  --accent: var(--accent-bright);
   padding-block: 72px 32px;
 }
 
@@ -311,7 +334,8 @@
   background: var(--ink);
   color: var(--paper);
   --line: var(--line-invert);
-  --ink-2: rgba(250, 248, 245, 0.7);
+  --ink-2: rgba(248, 250, 249, 0.7);
+  --accent: var(--accent-bright);
   padding-block: 88px;
 }
 
@@ -376,7 +400,7 @@
 }
 
 .section--dark .stat__unit {
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(248, 250, 249, 0.6);
 }
 
 .stat__label {

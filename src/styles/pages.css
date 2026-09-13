@@ -94,11 +94,12 @@
   background: var(--ink);
   color: var(--paper);
   --line: var(--line-invert);
+  --accent: var(--accent-bright);
   padding: 28px var(--gutter) 30px;
 }
 
 .hero__panel .eyebrow {
-  color: rgba(250, 248, 245, 0.55);
+  color: rgba(248, 250, 249, 0.55);
 }
 
 @media (min-width: 1000px) {
@@ -140,7 +141,7 @@
   margin-top: 8px;
   font-size: 0.74rem;
   line-height: 1.4;
-  color: rgba(250, 248, 245, 0.6);
+  color: rgba(248, 250, 249, 0.6);
 }
 
 .hero__float {
@@ -209,8 +210,9 @@
   background: var(--ink);
   color: var(--paper);
   --line: var(--line-invert);
-  --ink-2: rgba(250, 248, 245, 0.7);
-  --ink-3: rgba(250, 248, 245, 0.5);
+  --ink-2: rgba(248, 250, 249, 0.7);
+  --ink-3: rgba(248, 250, 249, 0.5);
+  --accent: var(--accent-bright);
   padding-block: 92px;
 }
 
@@ -251,7 +253,7 @@
   border-top: var(--rule) solid var(--line-invert);
   padding-top: 22px;
   font-size: 0.86rem;
-  color: rgba(250, 248, 245, 0.66);
+  color: rgba(248, 250, 249, 0.66);
 }
 
 /* -------------------------------- Services -------------------------------- */

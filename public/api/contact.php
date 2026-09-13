@@ -321,7 +321,7 @@ $body = implode("\n", [
     '',
     'Name:     ' . $name,
     'Email:    ' . $email,
-    'Company:  ' . ($company !== '' ? $company : '—'),
+    'Company:  ' . ($company !== '' ? $company : '(not given)'),
     'Needs:    ' . $interest,
     '',
     'The problem, in their words',
@@ -341,7 +341,7 @@ $headers = [
     // Puts the prospect one click away: hitting reply in the shared inbox
     // addresses them, not the sending robot.
     'Reply-To'                  => encodeHeader($name) . ' <' . headerSafe($email) . '>',
-    'Subject'                   => encodeHeader($interest . ' — ' . $name . ($company !== '' ? ' (' . $company . ')' : '')),
+    'Subject'                   => encodeHeader($interest . ' / ' . $name . ($company !== '' ? ' (' . $company . ')' : '')),
     'Message-ID'                => '<' . bin2hex(random_bytes(12)) . '@' . (explode('@', $from)[1] ?? 'dealworkx.com') . '>',
     'MIME-Version'              => '1.0',
     'Content-Type'              => 'text/plain; charset=UTF-8',

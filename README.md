@@ -71,13 +71,13 @@ propagates site-wide.
 npm run build
 ```
 
-Upload **the contents of `dist/`** — not the folder itself — into `public_html`.
+Upload **the contents of `dist/`**, not the folder itself, into `public_html`.
 `dist/` contains `.htaccess` and `api/`, both required.
 
 Easiest reliable method: zip everything inside `dist/`, upload the zip via
 hPanel → Files → File Manager, then right-click → Extract. Zipping matters
 because File Manager and some FTP clients silently skip dotfiles, and
-**`.htaccess`** is not optional — React Router owns `/about`, `/work` and
+**`.htaccess`** is not optional. React Router owns `/about`, `/work` and
 `/contact`, so without its rewrite those URLs return a Hostinger 404 on direct
 load or refresh.
 
@@ -92,11 +92,11 @@ from the shared inbox reaches them rather than the sending robot.
 
 Three files in `api/` do the work:
 
-- `contact.php` — validation, honeypot, per-IP rate limit, message composition.
-- `smtp.php` — a small self-contained SMTP client. Hostinger's shared plans have
+- `contact.php`: validation, honeypot, per-IP rate limit, message composition.
+- `smtp.php`: a small self-contained SMTP client. Hostinger's shared plans have
   no Composer, so this speaks just enough of RFC 5321 to submit one message over
   an authenticated, encrypted connection rather than vendoring PHPMailer.
-- `config.php` — live credentials. Gitignored, blocked by `.htaccess`, and built
+- `config.php`: live credentials. Gitignored, blocked by `.htaccess`, and built
   into `dist/api/` so there is nothing to create on the server.
 
 `info@dealworkx.com` is only ever a *recipient*, which is deliberate: it needs no
@@ -108,7 +108,7 @@ Two values in `config.php` may need attention:
    Dedicated IPs). Brevo rejects unverified senders outright. A Brevo signup
    address is verified automatically, which is what the default uses. Once you
    can add DNS records for `dealworkx.com`, authenticate the domain in Brevo and
-   change this to `forms@dealworkx.com` — a company-domain sender is filtered far
+   change this to `forms@dealworkx.com`, since a company-domain sender is filtered far
    less often than a `gmail.com` one, and reads correctly in the client's inbox.
 2. **`SMTP_PORT`** is 587. If submissions time out, Hostinger is blocking
    outbound SMTP on that port; Brevo also listens on 465 (with `SMTP_SECURITY`
@@ -125,7 +125,7 @@ curl -i https://dealworkx.com/api/contact.php \
 ```
 
 `{"ok":true}` means Brevo accepted it. Cross-check under Brevo → *Transactional →
-Logs*, which shows whether it was then delivered, deferred or bounced — useful
+Logs*, which shows whether it was then delivered, deferred or bounced, useful
 precisely because you may not be able to read the destination inbox. Anything
 else: read `api/contact-errors.log`, which holds the SMTP transcript with
 credentials withheld.
@@ -150,11 +150,11 @@ endpoint.
 
 If you point `dealworkx.com` at Hostinger by changing **nameservers**, Hostinger's
 DNS zone will not contain the Google Workspace MX records and all mail to
-`info@` stops arriving — the form's included. Add the MX records in hPanel → DNS
+`info@` stops arriving, the form's included. Add the MX records in hPanel → DNS
 Zone Editor first, along with any SPF/DKIM/DMARC records. Pointing only the A
 record at Hostinger avoids this entirely.
 
 ### Other hosts
 
-On Netlify/Vercel/S3 the `.htaccess` is ignored — add an SPA rewrite (all paths
+On Netlify/Vercel/S3 the `.htaccess` is ignored, so add an SPA rewrite (all paths
 → `/index.html`) and port `api/contact.php` to a serverless function.
