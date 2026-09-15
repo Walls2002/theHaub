@@ -6,7 +6,7 @@ import { site } from '../data/site'
 export default function CTABand({
   eyebrow = 'Next step',
   title = 'Tell us who you need to be in front of.',
-  body = 'A thirty-minute call, no deck. We will tell you how many meetings your market can realistically support, including when the answer is not many.',
+  body = 'Thirty minutes, no deck. Let’s break down how omnichannel prospecting works, where most outbound campaigns fall short, and how we combine traditional selling with modern outreach to create more conversations.',
   primary = { label: 'Book an intro call', to: '/contact' }
 }) {
   return (

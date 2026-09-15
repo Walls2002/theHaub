@@ -4,7 +4,7 @@ import Reveal from '../components/Reveal'
 import CTABand from '../components/CTABand'
 import Arrow from '../components/Arrow'
 import images from '../data/images'
-import { capabilities, engagements, pillars } from '../data/content'
+import { capabilities, pillars } from '../data/content'
 
 export default function Work() {
   return (
@@ -62,46 +62,8 @@ export default function Work() {
         </div>
       </section>
 
-      {/* ------------------------------- Engagements ------------------------------ */}
-      <section className="section">
-        <div className="shell">
-          <div className="head head--split">
-            <Reveal>
-              <span className="eyebrow">Selected engagements</span>
-              <h2 className="display display--lg head__title">
-                Three problems, and what changed.
-              </h2>
-            </Reveal>
-            <Reveal delay={100}>
-              <p className="lede">
-                Client names withheld where the contract requires it. Numbers are as reported in the
-                closing quarterly review.
-              </p>
-            </Reveal>
-          </div>
-
-          {engagements.map((e, i) => (
-            <Reveal className="engagement" key={e.title} delay={i * 60}>
-              <div>
-                <span className="mono">{e.tag}</span>
-                <h3 className="engagement__title">{e.title}</h3>
-              </div>
-              <p className="body">{e.body}</p>
-              <div className="metrics">
-                {e.metrics.map((m) => (
-                  <div className="metric" key={m.label}>
-                    <div className="metric__value">{m.value}</div>
-                    <div className="metric__label">{m.label}</div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
       {/* ------------------------------- Capabilities ----------------------------- */}
-      <section className="section section--muted">
+      <section className="section">
         <div className="shell">
           <div className="head head--split">
             <Reveal>
@@ -133,7 +95,7 @@ export default function Work() {
       <CTABand
         eyebrow="Start here"
         title="Bring us the campaign that stalled."
-        body="We will read your last two quarters of outreach, tell you where the drop-off is, and only then talk about running it."
+        body="Let’s start with your ICP, your current sales setup, and what’s actually working in your outbound. In 30 minutes, we’ll map out where the gaps are and explore how DealWorkx could help turn more of your target accounts into real conversations."
       />
     </>
   )

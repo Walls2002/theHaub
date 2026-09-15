@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom'
 import { nav, site } from '../data/site'
 
 const services = [
-  'Appointment setting',
   'Lead research',
-  'Outreach infrastructure',
+  'Appointment setting',
   'CRM and handover'
 ]
 

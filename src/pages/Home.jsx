@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import Arrow from '../components/Arrow'
 import Reveal from '../components/Reveal'
-import Stats from '../components/Stats'
 import CTABand from '../components/CTABand'
 import images from '../data/images'
-import { clients, hero, reasons, services, statement, stats } from '../data/content'
+import { hero, industries, reasons, services, statement } from '../data/content'
 
 export default function Home() {
   return (
@@ -36,7 +35,7 @@ export default function Home() {
           </Reveal>
         </div>
 
-        {/* Full-bleed banner with overlapping panels */}
+        {/* Full-bleed banner with the secondary photo breaking its top edge */}
         <Reveal delay={120} className="hero__stage">
           <div className="frame hero__banner">
             <img
@@ -44,18 +43,6 @@ export default function Home() {
               alt="An outbound team working through account research across a shared floor"
               loading="eager"
             />
-          </div>
-
-          <div className="hero__panel">
-            <span className="eyebrow">Across live client campaigns</span>
-            <ul className="hero__panel-stats">
-              {hero.proof.map((p) => (
-                <li key={p.label}>
-                  <div className="hero__panel-value">{p.value}</div>
-                  <div className="hero__panel-label">{p.label}</div>
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className="hero__float">
@@ -73,9 +60,6 @@ export default function Home() {
             {hero.disciplines.map((d) => (
               <li key={d}>{d}</li>
             ))}
-            <li style={{ marginLeft: 'auto' }} className="mono">
-              Est. 2019 · 11 markets
-            </li>
           </Reveal>
         </div>
       </section>
@@ -111,12 +95,12 @@ export default function Home() {
             <Reveal>
               <span className="eyebrow">What we do</span>
               <h2 className="display display--lg head__title">
-                Four jobs, one team, one booked meeting.
+                Three jobs, one team, one booked meeting.
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                Most clients take all four, because a booked meeting needs every one of them. You
+                Most clients take all three, because a booked meeting needs every one of them. You
                 can start with research alone if you already have the sending set up.
               </p>
             </Reveal>
@@ -181,37 +165,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --------------------------------- Numbers -------------------------------- */}
-      <section className="section section--tight">
-        <div className="shell">
-          <Reveal>
-            <span className="eyebrow">By the numbers</span>
-          </Reveal>
-          <div style={{ marginTop: 34 }}>
-            <Stats items={stats} columns={4} />
-          </div>
-        </div>
-      </section>
-
-      {/* --------------------------------- Clients -------------------------------- */}
+      {/* ------------------------------- Industries ------------------------------- */}
       <section className="section section--ruled">
         <div className="shell">
           <div className="head head--split">
             <Reveal>
-              <span className="eyebrow">Selected clients</span>
+              <span className="eyebrow">Industries we serve</span>
               <h2 className="display display--lg head__title">
-                Teams we book meetings for.
+                Markets we book meetings in.
               </h2>
             </Reveal>
             <Reveal delay={100}>
               <p className="lede">
-                Logistics, health operations, industrial software and financial infrastructure.
-                Long sales cycles, technical buyers, and no patience for spray-and-pray.
+                AI and developer platforms, machine learning, data tooling and MarTech. Long sales
+                cycles, technical buyers, and no patience for spray-and-pray.
               </p>
             </Reveal>
           </div>
           <ul className="logos">
-            {clients.map((c, i) => (
+            {industries.map((c, i) => (
               <Reveal as="li" key={c} delay={i * 40}>
                 {c}
               </Reveal>
