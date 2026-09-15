@@ -321,6 +321,39 @@
   }
 }
 
+/* Statement variant: one column, so a sentence-length title gets the whole
+   measure at a calmer size and the lede reads as a deck beneath the rule. */
+
+.pagehead--statement .pagehead__grid {
+  gap: 0;
+}
+
+.pagehead--statement .pagehead__title {
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.pagehead--statement .pagehead__aside {
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: var(--rule) solid var(--line);
+}
+
+@media (min-width: 900px) {
+  .pagehead--statement .pagehead__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pagehead--statement .pagehead__aside {
+    margin-top: 48px;
+    padding-top: 28px;
+  }
+
+  .pagehead--statement .pagehead__aside .lede {
+    max-width: 56ch;
+  }
+}
+
 .crumbs {
   display: flex;
   gap: 8px;

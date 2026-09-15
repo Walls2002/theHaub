@@ -10,6 +10,7 @@ export default function About() {
       <PageHeader
         index="01"
         eyebrow="About DealWorkx"
+        variant="statement"
         title="Founded by former Senior SDRs who know that great products do not always lose because of the product, but because the right conversations never get started."
         lede={about.intro}
       />
