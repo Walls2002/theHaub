@@ -40,9 +40,12 @@ export const site = {
 
   contact: {
     email: 'info@dealworkx.com',
-    phone: '+1 (628) 555-0142',
-    phoneHref: '+16285550142',
-    address: ['Level 12, Ayala North Exchange', 'Salcedo Village, Makati City', 'Philippines'],
+    // WhatsApp rather than a landline. wa.me wants the number in full
+    // international form with no plus, spaces or leading zero, so the local
+    // 0916 638 4026 becomes 639166384026.
+    whatsapp: '0916 638 4026',
+    whatsappHref: 'https://wa.me/639166384026',
+    address: ['Manila, Philippines'],
     hours: 'Coverage across US, UK and APAC business hours'
   },
   social: [

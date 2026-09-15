@@ -47,13 +47,15 @@ export default function Contact() {
                   </span>
                 </div>
                 <div className="detail">
-                  <span className="field__label">Phone</span>
+                  <span className="field__label">WhatsApp</span>
                   <span className="detail__value">
-                    <a href={`tel:${site.contact.phoneHref}`}>{site.contact.phone}</a>
+                    <a href={site.contact.whatsappHref} target="_blank" rel="noreferrer">
+                      {site.contact.whatsapp}
+                    </a>
                   </span>
                 </div>
                 <div className="detail">
-                  <span className="field__label">Studio</span>
+                  <span className="field__label">Location</span>
                   <span className="detail__value">
                     {site.contact.address.map((line) => (
                       <span key={line} style={{ display: 'block' }}>
